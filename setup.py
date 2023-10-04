@@ -23,12 +23,12 @@ subprocess.run(
     ["pip", "install", "git+https://github.com/elliottzheng/batch-face.git@master"])
 subprocess.run(["pip", "install", "ffmpeg-python", "mediapipe==0.8.11"])
 
-print(os.getcwd())
+print("HERE" + os.getcwd())
 os.chdir(paths.base_path)
 
 # Step 4: Clone the wav2lip-HD repository
 subprocess.run(["git", "clone", "https://github.com/indianajson/wav2lip-HD"])
-basePath = str(paths.base_path / "/wav2lip-HD")
+basePath = str(paths.base_path / "wav2lip-HD")
 os.chdir(basePath)
 wav2lipFolderName = 'Wav2Lip-master'
 gfpganFolderName = 'GFPGAN-master'
