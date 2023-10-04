@@ -1,0 +1,36 @@
+{
+  "choosen-framework": "Storytelling",
+  "content-type": "Inspiring",
+  "hook": "Ever wondered how a piece of metal can inspire a sense of freedom and adventure? Let's dive into the world of cars!",
+  "script": "Hey there, car enthusiasts and dreamers alike! Today, we're going on a journey, a journey that starts with a simple piece of metal and ends with a symbol of freedom, adventure, and human ingenuity - the car. nnImagine, a world without cars. Difficult, isn't it? That's because cars are not just vehicles; they are a testament to human creativity and resilience. They symbolize our relentless pursuit of speed, efficiency, and style. nnFrom the humble beginnings of the Ford Model T, the first car accessible to the masses, to the sleek, electric-powered Teslas of today, cars have come a long way. They've evolved, adapted, and transformed, just like us. nnSo, the next time you sit behind the wheel, remember, you're not just driving a car. You're partaking in a legacy of human innovation and spirit. Now, isn't that inspiring?",
+  "keywords": "cars, freedom, adventure, human ingenuity, Ford Model T, Tesla, evolution, innovation",
+  "b-roll": [
+    {
+      "sentence": "Today, we're going on a journey, a journey that starts with a simple piece of metal and ends with a symbol of freedom, adventure, and human ingenuity - the car.",
+      "keywords": [
+        "journey",
+        "car",
+        "freedom",
+        "adventure",
+        "human ingenuity"
+      ]
+    },
+    {
+      "sentence": "From the humble beginnings of the Ford Model T, the first car accessible to the masses, to the sleek, electric-powered Teslas of today, cars have come a long way.",
+      "keywords": [
+        "ford model t",
+        "tesla",
+        "evolution"
+      ]
+    },
+    {
+      "sentence": "So, the next time you sit behind the wheel, remember, you're not just driving a car. You're partaking in a legacy of human innovation and spirit.",
+      "keywords": [
+        "driving",
+        "car",
+        "human innovation",
+        "spirit"
+      ]
+    }
+  ]
+}
