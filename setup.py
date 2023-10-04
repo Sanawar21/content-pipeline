@@ -1,9 +1,10 @@
 import os
 import subprocess
+from utils import paths
 
 # Step 1: Clone the Wav2Lip repository
 subprocess.run(["git", "clone", "https://github.com/justinjohn0306/Wav2Lip"])
-os.chdir("/content/Wav2Lip")
+os.chdir(paths.base_path / "Wav2Lip")
 
 # Step 2: Download pretrained models
 subprocess.run(["wget", "https://github.com/justinjohn0306/Wav2Lip/releases/download/models/wav2lip.pth",
@@ -24,7 +25,7 @@ subprocess.run(["pip", "install", "ffmpeg-python", "mediapipe==0.8.11"])
 
 # Step 4: Clone the wav2lip-HD repository
 subprocess.run(["git", "clone", "https://github.com/indianajson/wav2lip-HD"])
-basePath = "/content/content-pipeline/wav2lip-HD"
+basePath = str(paths.base_path / "/content-pipeline/wav2lip-HD")
 os.chdir(basePath)
 wav2lipFolderName = 'Wav2Lip-master'
 gfpganFolderName = 'GFPGAN-master'
@@ -67,3 +68,7 @@ subprocess.run(["pip", "install", "openai-whisper==20230124",
 os.rename("whisper-timestamped", "whisper_timestamped")
 with open("whisper_timestamped/__init__.py", "w") as file:
     pass
+
+os.chdir("..")
+
+subprocess.run(["pip", "install", "-r", "requirements.txt"])
