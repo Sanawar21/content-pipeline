@@ -23,7 +23,6 @@ subprocess.run(
     ["pip", "install", "git+https://github.com/elliottzheng/batch-face.git@master"])
 subprocess.run(["pip", "install", "ffmpeg-python", "mediapipe==0.8.11"])
 
-print("HERE" + os.getcwd())
 os.chdir(paths.base_path)
 
 # Step 4: Clone the wav2lip-HD repository
@@ -68,10 +67,10 @@ os.chdir("whisper-timestamped")
 subprocess.run(["python3", "setup.py", "install"])
 subprocess.run(["pip", "install", "openai-whisper==20230124",
                "ffmpeg-python", "dtw-python", "moviepy", "fuzzywuzzy"])
+os.chdir("..")
 os.rename("whisper-timestamped", "whisper_timestamped")
 with open("whisper_timestamped/__init__.py", "w") as file:
     pass
 
-os.chdir("..")
 
 subprocess.run(["pip", "install", "-r", "requirements.txt"])
