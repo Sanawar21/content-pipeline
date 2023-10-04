@@ -74,3 +74,4 @@ with open("whisper_timestamped/__init__.py", "w") as file:
 
 
 subprocess.run(["pip", "install", "-r", "requirements.txt"])
+os.chdir(paths.base_path)
