@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, send_file
 from werkzeug.utils import secure_filename
-from utils import status, start_vps, close_vps, restore_dirs, paths
+from utils import status, start_vps, close_vps, restore_dirs, paths, generate
 import os
 import audio
 import video
@@ -25,42 +25,15 @@ def get_status():
 
 
 @app.route("/api/generate_video", methods=["POST"])
-def generate():
-    try:
-        voice = request.form.get('voice')
-        description = request.form.get('description')
-        workflow = {
-            'VideoTopic': request.form.get('video_topic'),
-            'TypeOfContent': request.form.get('content_type'),
-            'KeyPoints': request.form.get('keypoints')
-        }
-
-        content.process_workflow(workflow)
-        status.set(status.generating_audio)
-        if voice not in audio.list_voices():
-            audio.clone_voice(voice, description)
-
-        audio.generate_audio(voice)
-        status.set(status.generating_lipsync)
-        video.generate_video()
-        status.set(status.enhancing_video)
-        video.enhance_video()
-        os.rename(paths.output_video, "".join(
-            [str(paths.output_video).split(".")[0], "_.mp4"]))
-        os.rename(paths.enhanced_video, paths.output_video)
-        video.enhance_video()
-        status.set(status.zooming_video)
-        zoom.zoom_video_at_intervals()
-        status.set(status.adding_brolls)
-        b_rolls.add_b_rolls()
-        status.set(status.generating_subtitles)
-        captions.add_to_video()
-        status.set(status.combining_audio_video)
-        video.merge_audio_and_video()
-        status.set(status.done)
-        return status.done
-    except Exception as e:
-        return e
+def generate_video():
+    voice = request.form.get('voice')
+    description = request.form.get('description')
+    workflow = {
+        'VideoTopic': request.form.get('video_topic'),
+        'TypeOfContent': request.form.get('content_type'),
+        'KeyPoints': request.form.get('keypoints')
+    }
+    return generate(voice, description, workflow)
 
 
 @app.route("/api/get_video", methods=["GET"])
