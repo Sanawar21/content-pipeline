@@ -1,12 +1,6 @@
 import os
 import pathlib
 import json
-import captions
-import zoom
-import audio
-import video
-import b_rolls
-import content
 
 
 class Status:
@@ -119,36 +113,6 @@ def restore_dirs():
             os.mkdir(dir)
         except:
             pass
-
-
-def generate(voice, description, workflow):
-    try:
-        content.process_workflow(workflow)
-        status.set(status.generating_audio)
-        if voice not in audio.list_voices():
-            audio.clone_voice(voice, description)
-
-        audio.generate_audio(voice)
-        status.set(status.generating_lipsync)
-        video.generate_video()
-        status.set(status.enhancing_video)
-        video.enhance_video()
-        os.rename(paths.output_video, "".join(
-            [str(paths.output_video).split(".")[0], "_.mp4"]))
-        os.rename(paths.enhanced_video, paths.output_video)
-        video.enhance_video()
-        status.set(status.zooming_video)
-        zoom.zoom_video_at_intervals()
-        status.set(status.adding_brolls)
-        b_rolls.add_b_rolls()
-        status.set(status.generating_subtitles)
-        captions.add_to_video()
-        status.set(status.combining_audio_video)
-        video.merge_audio_and_video()
-        status.set(status.done)
-        return status.done
-    except Exception as e:
-        return e
 
 
 if __name__ == "__main__":
