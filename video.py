@@ -47,7 +47,9 @@ def generate_video():
         str(pad_left),
         str(pad_right),
         '--resize_factor',
-        str(rescaleFactor)
+        str(rescaleFactor),
+        '--outfile',
+        str(paths.output_video)
     ]
 
     if not nosmooth:
