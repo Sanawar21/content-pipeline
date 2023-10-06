@@ -65,7 +65,7 @@ def generate_srt():
 
 def __create_subtitles_clip(
     srt_file=str(paths.subtitles_file),
-    video_file=str(paths.zoomed_video),
+    video_file=str(paths.b_rolled_video),
     font="Ebrima-Bold",
     fontsize=200,
     color="white",
