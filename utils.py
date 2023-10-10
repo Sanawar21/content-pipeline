@@ -38,6 +38,7 @@ class Paths:
     captioned_video = outputs_folder / "captioned.mp4"
     zoomed_video = outputs_folder / "zoomed.mp4"
     b_rolled_video = outputs_folder / "b_rolled.mp4"
+    temp_srt = outputs_folder / "temp.srt"
     subtitles_file = outputs_folder / "subtitles.srt"
     sentences_file = outputs_folder / "sentences.srt"
     unprocessed_frames_folder = outputs_folder / "frames"
