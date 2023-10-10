@@ -1,7 +1,7 @@
 from moviepy.editor import VideoFileClip, TextClip, CompositeVideoClip
 from moviepy.video.tools.subtitles import SubtitlesClip
 from fuzzywuzzy import fuzz, process
-# from whisper_timestamped import whisper_timestamped as whisper
+from whisper_timestamped import whisper_timestamped as whisper
 from utils import paths
 import os
 import re
@@ -193,12 +193,12 @@ def __add_subtitles_to_video(subtitles_clip):
 
 
 def add_to_video():
-    # os.chdir(paths.whisper_folder)
-    # generate_srt()
+    os.chdir(paths.whisper_folder)
+    generate_srt()
     subtitles_clip = __create_subtitles_clip()
     final_clip = __add_subtitles_to_video(subtitles_clip)
     final_clip.write_videofile(str(paths.captioned_video), fps=final_clip.fps)
-    # os.chdir(paths.base_path)
+    os.chdir(paths.base_path)
 
 
 if __name__ == "__main__":
