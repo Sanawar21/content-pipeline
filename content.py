@@ -57,9 +57,9 @@ def __format_json(data: dict):
 if __name__ == "__main__":
     # Example usage:
     workflow = {
-        'VideoTopic': 'Cars',
+        'VideoTopic': 'Books',
         'TypeOfContent': 'Informative',
-        'KeyPoints': 'Self-driven'
+        'KeyPoints': 'Inspirational'
     }
 
     try:

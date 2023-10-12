@@ -24,4 +24,4 @@ def generate_audio(voice: str):
 
 
 if __name__ == "__main__":
-    print(list_voices())
+    generate_audio("Thomas")
