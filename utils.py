@@ -122,3 +122,7 @@ if __name__ == "__main__":
         env["API_KEY"] = "api"
 
     set_env(env)
+
+if __name__ == "__main__":
+    for b_roll in paths.get_b_rolls():
+        print(b_roll)

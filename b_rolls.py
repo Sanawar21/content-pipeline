@@ -8,6 +8,7 @@ import requests
 import random
 import os
 import shutil
+import numpy as np
 
 load_dotenv()
 
@@ -47,6 +48,12 @@ class BRoll:
         return b_roll_clip
 
 
+def __create_black_image(resolution):
+    width, height = resolution
+    image = np.full((height, width, 3), (0, 0, 0), dtype=np.uint8)
+    return image
+
+
 def __resize_b_rolls(b_rolls: 'list[BRoll]', main_clip_w, main_clip_h):
     resized_b_rolls = []
     for b_roll in b_rolls:
@@ -69,7 +76,8 @@ def __blackout_sections(b_rolls: "list[BRoll]"):
 
         blackout_duration = end_time - start_time
         black_frame_clip = ImageClip(
-            "black_screen.png", duration=blackout_duration)
+            __create_black_image(video_clip.size), duration=blackout_duration)
+        black_frame_clip.size = video_clip.size
         modified_sections.append(black_frame_clip)
 
         last_end_time = end_time

@@ -117,19 +117,21 @@ def __format_time(time_in_seconds):
 
 
 def __create_temp_srt():
+    words_per_frame = 3
     word_level = __srt_to_dict(str(paths.subtitles_file))
     sentence_level = __srt_to_dict(str(paths.sentences_file))
     temp_srt = []
     index = 0
     for sentence in sentence_level:
+        print(sentence)
         time_range = (sentence["start_time"], sentence["end_time"])
         words = []
         for word in word_level:
             if word["start_time"] >= time_range[0] and word["end_time"] <= time_range[1]:
                 words.append(word)
 
-        for i in range(0, len(words), 3):
-            three_words = words[i:i+3]
+        for i in range(0, len(words), words_per_frame):
+            three_words = words[i:i+words_per_frame]
             start_time = three_words[0]["start_time"]
             end_time = three_words[-1]["end_time"]
             string = " ".join([word["sentence"] for word in three_words])
@@ -155,12 +157,12 @@ def generate_srt():
 def __create_subtitles_clip(
     video_file=str(paths.b_rolled_video),
     font="AppleTea",
-    fontsize=75,
+    fontsize=100,
     color="white",
-    method="label",
+    method="caption",
     align="center",
     stroke_color="black",
-    stroke_width=7,
+    stroke_width=3,
 ):
 
     def generator(txt): return TextClip(
