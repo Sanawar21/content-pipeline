@@ -2,6 +2,9 @@
 # https://github.com/replicate/cog/blob/main/docs/python.md
 
 from cog import BasePredictor, Input, Path
+from app import generate
+from utils import paths
+import shutil
 
 
 class Predictor(BasePredictor):
@@ -11,12 +14,23 @@ class Predictor(BasePredictor):
 
     def predict(
         self,
-        image: Path = Input(description="Grayscale input image"),
-        scale: float = Input(
-            description="Factor to scale image by", ge=0, le=10, default=1.5
-        ),
+        input_video: Path = Input(description="Input video"),
+        voice_name: str = Input(description="Voice name"),
+        description: str = Input(
+            description="Voice description (optional)", default=None),
+        video_topic: str = Input(description="Video topic"),
+        content_type: str = Input(description="Type of content"),
+        key_points: str = Input(description="Key points"),
     ) -> Path:
         """Run a single prediction on the model"""
-        # processed_input = preprocess(image)
-        # output = self.model(processed_image, scale)
-        # return postprocess(output)
+
+        shutil.copy(input_video, paths.input_video)
+
+        workflow = {
+            'VideoTopic': video_topic,
+            'TypeOfContent': content_type,
+            'KeyPoints': key_points,
+        }
+
+        generate(voice_name, description, workflow)
+        return Path("".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]))

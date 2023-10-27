@@ -75,7 +75,7 @@ paths = Paths()
 
 def set_env(data: dict):
     with open(".env", "w") as file:
-        file.writelines([f"{key}={value}" for key, value in data.items()])
+        file.writelines([f"{key}={value}\n" for key, value in data.items()])
 
 
 def get_env():
