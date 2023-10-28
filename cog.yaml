@@ -20,9 +20,9 @@ build:
 
   # commands run after the environment is setup
   run:
-     - "cd /root/content-pipeline"
-     - "python3 setup.py"
-  #   - "echo another command if needed"
+    - "echo another command if needed"
+    #  - "cd /root/content-pipeline"
+    - "python3 setup.py"
 
 # predict.py defines how predictions are run on your model
 predict: "predict.py:Predictor"
