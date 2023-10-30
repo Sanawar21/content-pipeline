@@ -20,7 +20,7 @@ build:
 
   # commands run after the environment is setup
   run:
-    # - "pwd"
+    - "pwd"
     #  - "cd /root/content-pipeline"
     - "python3 setup.py"
 
