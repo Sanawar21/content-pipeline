@@ -18,10 +18,10 @@ subprocess.run(["wget", "https://github.com/justinjohn0306/Wav2Lip/releases/down
 
 # Step 3: Install required packages
 subprocess.run(
-    ["pip", "install", "https://raw.githubusercontent.com/AwaleSajil/ghc/master/ghc-1.0-py3-none-any.whl"])
+    ["pip3", "install", "https://raw.githubusercontent.com/AwaleSajil/ghc/master/ghc-1.0-py3-none-any.whl"])
 subprocess.run(
-    ["pip", "install", "git+https://github.com/elliottzheng/batch-face.git@master"])
-subprocess.run(["pip", "install", "ffmpeg-python", "mediapipe==0.8.11"])
+    ["pip3", "install", "git+https://github.com/elliottzheng/batch-face.git@master"])
+subprocess.run(["pip3", "install", "ffmpeg-python", "mediapip3e==0.8.11"])
 
 os.chdir(paths.base_path)
 
@@ -44,8 +44,8 @@ subprocess.run(["wget", "https://github.com/TencentARC/GFPGAN/releases/download/
 
 # Step 6: Install requirements
 os.chdir(basePath)
-subprocess.run(["pip", "install", "-r", "requirements.txt"])
-subprocess.run(["pip", "install", "-U", "librosa==0.8.1"])
+subprocess.run(["pip3", "install", "-r", "requirements.txt"])
+subprocess.run(["pip3", "install", "-U", "librosa==0.8.1"])
 subprocess.run(["mkdir", "inputs"])
 
 # Step 7: Setup GFPGAN
@@ -57,7 +57,7 @@ subprocess.run(["git", "clone", "https://github.com/Sanawar21/basicsr.git"])
 
 # Step 9: Install facexlib
 os.chdir(basePath)
-subprocess.run(["pip", "install", "facexlib"])
+subprocess.run(["pip3", "install", "facexlib"])
 
 # Step 10: Clone and configure whisper-timestamped
 os.chdir("..")
@@ -65,7 +65,7 @@ subprocess.run(
     ["git", "clone", "https://github.com/linto-ai/whisper-timestamped"])
 os.chdir("whisper-timestamped")
 subprocess.run(["python3", "setup.py", "install"])
-subprocess.run(["pip", "install", "openai-whisper==20230124",
+subprocess.run(["pip3", "install", "openai-whisper==20230124",
                "ffmpeg-python", "dtw-python", "moviepy", "fuzzywuzzy"])
 os.chdir("..")
 os.rename("whisper-timestamped", "whisper_timestamped")
@@ -73,5 +73,5 @@ with open("whisper_timestamped/__init__.py", "w") as file:
     pass
 
 
-subprocess.run(["pip", "install", "-r", "requirements.txt"])
+subprocess.run(["pip3", "install", "-r", "requirements.txt"])
 os.chdir(paths.base_path)
