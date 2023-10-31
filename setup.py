@@ -21,7 +21,7 @@ subprocess.run(
     ["pip3", "install", "https://raw.githubusercontent.com/AwaleSajil/ghc/master/ghc-1.0-py3-none-any.whl"])
 subprocess.run(
     ["pip3", "install", "git+https://github.com/elliottzheng/batch-face.git@master"])
-subprocess.run(["pip3", "install", "ffmpeg-python", "mediapip3e==0.8.11"])
+subprocess.run(["pip3", "install", "ffmpeg-python3", "mediapip3e==0.8.11"])
 
 os.chdir(paths.base_path)
 
@@ -35,7 +35,7 @@ wav2lipPath = basePath + '/' + wav2lipFolderName
 gfpganPath = basePath + '/' + gfpganFolderName
 
 # Step 5: Download additional files
-subprocess.run(["wget", "https://www.adrianbulat.com/downloads/python-fan/s3fd-619a316812.pth",
+subprocess.run(["wget", "https://www.adrianbulat.com/downloads/python3-fan/s3fd-619a316812.pth",
                "-O", f"{wav2lipPath}/face_detection/detection/sfd/s3fd.pth"])
 subprocess.run(["gdown", "https://drive.google.com/uc?id=1fQtBSYEyuai9MjBOF8j7zZ4oQ9W2N64q",
                "--output", f"{wav2lipPath}/checkpoints/"])
@@ -50,7 +50,7 @@ subprocess.run(["mkdir", "inputs"])
 
 # Step 7: Setup GFPGAN
 os.chdir(gfpganFolderName)
-subprocess.run(["python", "setup.py", "develop"])
+subprocess.run(["python3", "setup.py", "develop"])
 
 # Step 8: Clone basicsr repository
 subprocess.run(["git", "clone", "https://github.com/Sanawar21/basicsr.git"])
@@ -66,7 +66,7 @@ subprocess.run(
 os.chdir("whisper-timestamped")
 subprocess.run(["python3", "setup.py", "install"])
 subprocess.run(["pip3", "install", "openai-whisper==20230124",
-               "ffmpeg-python", "dtw-python", "moviepy", "fuzzywuzzy"])
+               "ffmpeg-python3", "dtw-python3", "moviepy", "fuzzywuzzy"])
 os.chdir("..")
 os.rename("whisper-timestamped", "whisper_timestamped")
 with open("whisper_timestamped/__init__.py", "w") as file:
