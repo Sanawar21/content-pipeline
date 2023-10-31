@@ -89,7 +89,7 @@ build:
      - "nvidia-nvjitlink-cu12==12.3.52"
      - "nvidia-nvtx-cu12==12.1.105"
      - "oauthlib==3.2.2"
-     - "openai-whisper==20230918"
+     - "openai-whisper"
      - "opencv-contrib-python==4.8.1.78"
      - "opencv-python==4.8.0.76"
      - "packaging==23.2"
