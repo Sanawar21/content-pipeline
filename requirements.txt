@@ -121,7 +121,7 @@ torch==2.1.0
 torchvision==0.16.0
 tqdm==4.66.1
 traitlets==5.13.0
-triton==2.1.0
+triton
 typing_extensions==4.8.0
 urllib3==2.0.4
 wcwidth==0.2.9
