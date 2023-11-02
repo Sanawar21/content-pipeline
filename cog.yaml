@@ -25,7 +25,8 @@ build:
      - "python-dotenv==1.0.0"
      - "requests==2.31.0"
      - "whisper-timestamped==1.12.20"
-
+     - "pydantic==2.4.2"
+     
     #  - "elevenlabs==0.2.26"
     #  - "Flask==2.3.3"
     #  - "fuzzywuzzy==0.18.0"
