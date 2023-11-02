@@ -1,4 +1,5 @@
 import os
+import shutil
 import pathlib
 import json
 
@@ -107,7 +108,8 @@ def read_content():
 def restore_dirs():
     for dir in ["inputs", "outputs"]:
         try:
-            os.rmdir(dir)
+            # os.rmdir(dir)
+            shutil.rmtree(dir)
         except:
             pass
         try:

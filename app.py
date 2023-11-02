@@ -110,6 +110,7 @@ def generate(voice, description, workflow):
     status.set(status.combining_audio_video)
     video.merge_audio_and_video()
     status.set(status.done)
+    restore_dirs()
     return status.done
     # except Exception as e:
     #     return e
