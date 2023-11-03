@@ -44,8 +44,8 @@ build:
     #  - "torchvision==0.16"
 
   # commands run after the environment is setup
-  # run:
-    #  - "cd /root/content-pipeline"
+  run:
+    - "pip3 install fastapi==0.99.0"
     # - "python3 setup.py"
 
 # predict.py defines how predictions are run on your model
