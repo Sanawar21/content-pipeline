@@ -45,7 +45,7 @@ build:
 
   # commands run after the environment is setup
   run:
-    - "pip3 install fastapi==0.104.1"
+    # - "pip3 install fastapi==0.104.1"
     # - "pip3 install pydantic==2.4.2"
     - "pip3 install pydantic==1.10.12"
     - "pip3 install cog==0.7.2"
