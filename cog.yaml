@@ -47,6 +47,7 @@ build:
   run:
     - "pip3 install fastapi==0.104.1"
     - "pip3 install pydantic==2.4.2"
+    - "pip3 install cog==0.7.2"
     # - "python3 setup.py"
 
 # predict.py defines how predictions are run on your model
