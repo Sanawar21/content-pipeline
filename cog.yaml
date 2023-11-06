@@ -45,7 +45,7 @@ build:
 
   # commands run after the environment is setup
   run:
-    - "apt install libgl1-mesa-glx"
+    - "apt-get update && apt-get install ffmpeg libsm6 libxext6  -y"
     - "pip3 install fastapi==0.104.1"
     # - "pip3 install pydantic==2.4.2"
     - "pip3 install elevenlabs==0.2.0"
