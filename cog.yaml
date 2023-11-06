@@ -20,6 +20,7 @@ build:
      - "Flask==2.3.3"
      - "moviepy==1.0.3"
      - "numpy"
+     - "fuzzywuzzy"
      - "openai-whisper"
      - "opencv-python==4.8.0.76"
      - "python-dotenv==1.0.0"
