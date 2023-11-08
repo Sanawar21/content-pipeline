@@ -27,7 +27,9 @@ class Predictor(BasePredictor):
         """Run a single prediction on the model"""
 
         shutil.copy(input_video, paths.input_video)
-        shutil.copy(input_audio, paths.input_audio)
+
+        if input_audio is not None:
+            shutil.copy(input_audio, paths.input_audio)
 
         workflow = {
             'VideoTopic': video_topic,
