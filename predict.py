@@ -15,6 +15,8 @@ class Predictor(BasePredictor):
     def predict(
         self,
         input_video: Path = Input(description="Input video"),
+        input_audio: Path = Input(
+            description="Input audio (wav only) for voice cloning (optional)", default=None),
         voice_name: str = Input(description="Voice name"),
         description: str = Input(
             description="Voice description (optional)", default=None),
@@ -25,6 +27,7 @@ class Predictor(BasePredictor):
         """Run a single prediction on the model"""
 
         shutil.copy(input_video, paths.input_video)
+        shutil.copy(input_audio, paths.input_audio)
 
         workflow = {
             'VideoTopic': video_topic,
