@@ -88,10 +88,10 @@ def generate(voice, description, workflow):
     # try:
     content.process_workflow(workflow)
     status.set(status.generating_audio)
-    if voice not in audio.list_voices():
-        audio.clone_voice(voice, description)
+    if voice not in audio.list_voices().keys():
+        audio.clone(voice, description)
 
-    audio.generate_audio(voice)
+    audio.generate(voice)
     captions.generate_srt()
     status.set(status.generating_lipsync)
     video.generate_video()

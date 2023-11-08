@@ -28,6 +28,7 @@ class Paths:
     base_path = pathlib.Path(__file__).parent.resolve()
 
     inputs_folder = base_path / "inputs"
+    input_audio = inputs_folder / "_audio.wav"
     input_video = inputs_folder / "video.mp4"
     content_path = inputs_folder / "content.json"
 
@@ -67,6 +68,8 @@ class Paths:
             for f in os.listdir(self.inputs_folder)
             if os.path.isfile(os.path.join(self.inputs_folder, f))
             and f.endswith(".wav")
+            # initial input audio, may be longer than 1 minute
+            and not f.startswith("_")
         ]
 
 
@@ -119,12 +122,5 @@ def restore_dirs():
 
 
 if __name__ == "__main__":
-    env = get_env()
-    if "API_KEY" not in env.keys():
-        env["API_KEY"] = "api"
-
-    set_env(env)
-
-if __name__ == "__main__":
-    for b_roll in paths.get_b_rolls():
+    for b_roll in paths.get_input_audios():
         print(b_roll)
