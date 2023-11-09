@@ -24,7 +24,6 @@ build:
      - "python-dotenv==1.0.0"
      - "requests==2.31.0"
      - "whisper-timestamped==1.12.20"
-     - "pydantic==2.4.2"
      - "pydub"
      - "fastapi==0.104.1"
      - "pydantic==1.10.12"
