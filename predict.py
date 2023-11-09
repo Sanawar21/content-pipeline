@@ -5,7 +5,7 @@ from cog import BasePredictor, Input, Path
 from app import generate
 from utils import paths
 import shutil
-import subprocess
+import torch
 
 
 class Predictor(BasePredictor):
@@ -31,6 +31,12 @@ class Predictor(BasePredictor):
 
         if input_audio is not None:
             shutil.copy(input_audio, paths.input_audio)
+
+        # test torch
+        print(torch.__version__)
+
+        # Check if GPU is available
+        print(torch.cuda.is_available())
 
         workflow = {
             'VideoTopic': video_topic,
