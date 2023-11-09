@@ -5,6 +5,7 @@ from cog import BasePredictor, Input, Path
 from app import generate
 from utils import paths
 import shutil
+import subprocess
 
 
 class Predictor(BasePredictor):
@@ -30,6 +31,9 @@ class Predictor(BasePredictor):
 
         if input_audio is not None:
             shutil.copy(input_audio, paths.input_audio)
+
+        subprocess.run("nvidia-smi")
+        subprocess.run("pip3 show torch")
 
         workflow = {
             'VideoTopic': video_topic,
