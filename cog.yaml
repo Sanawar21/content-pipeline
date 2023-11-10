@@ -30,6 +30,7 @@ build:
      - "cog==0.7.2"
      - "torchvision"
      - "librosa"
+     - "facexlib"
      
 
   # commands run after the environment is setup
