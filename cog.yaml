@@ -4,7 +4,7 @@
 build:
   # set to true if your model requires a GPU
   gpu: true
-  cuda: "11.1.1"
+  cuda: "11.8"
   # a list of ubuntu apt packages to install
   system_packages:
      - "imagemagick"
@@ -14,29 +14,30 @@ build:
 
   # a list of packages in the format <package-name>==<version>
   python_packages:
-     - "dtw-python==1.3.0"
-     - "Flask==2.3.3"
-     - "moviepy==1.0.3"
-     - "numpy"
-     - "fuzzywuzzy"
-     - "openai-whisper"
-     - "opencv-python==4.8.0.76"
-     - "python-dotenv==1.0.0"
-     - "requests==2.31.0"
-     - "whisper-timestamped==1.12.20"
-     - "pydub"
+#      - "dtw-python==1.3.0"
+#      - "Flask==2.3.3"
+#      - "moviepy==1.0.3"
+#      - "numpy"
+#      - "fuzzywuzzy"
+#      - "openai-whisper"
+#      - "opencv-python==4.8.0.76"
+#      - "python-dotenv==1.0.0"
+#      - "requests==2.31.0"
+#      - "whisper-timestamped==1.12.20"
+#      - "pydub"
      - "fastapi==0.104.1"
      - "pydantic==1.10.12"
      - "cog==0.7.2"
-     - "torchvision"
-     - "librosa"
-     - "facexlib"
-     
+#      - "torchvision"
+#      - "librosa"
+#      - "facexlib"
+
 
   # commands run after the environment is setup
   run:
     - "apt-get update && apt-get install ffmpeg libsm6 libxext6  -y"
-    - "pip3 install torch==2.1.0"
+    - "python3 /src/setup.py"
+   #  - "pip3 install torch==2.1.0"
     # - "apt-get install libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools"
     # - "pip install torch==2.1.0 torchvision==0.10.1 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html"
     # - "pip3 install torch torchvision torchaudio"
