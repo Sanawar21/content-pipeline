@@ -3,7 +3,7 @@
 
 from cog import BasePredictor, Input, Path
 from app import generate
-from utils import paths
+from utils import paths, restore_dirs
 import shutil
 import torch
 
@@ -27,17 +27,11 @@ class Predictor(BasePredictor):
     ) -> Path:
         """Run a single prediction on the model"""
 
-        shutil.copy(input_video, paths.input_video)
+        restore_dirs()
 
+        shutil.copy(input_video, paths.input_video)
         if input_audio is not None:
             shutil.copy(input_audio, paths.input_audio)
-
-        # test torch
-        print(torch.__version__)
-
-        # Check if GPU is available
-        print(torch.cuda.is_available())
-
         workflow = {
             'VideoTopic': video_topic,
             'TypeOfContent': content_type,

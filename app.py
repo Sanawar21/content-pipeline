@@ -86,7 +86,6 @@ def end_session():
 
 def generate(voice, description, workflow):
     # try:
-    restore_dirs()
     content.process_workflow(workflow)
     status.set(status.generating_audio)
     if voice not in audio.list_voices().keys():
