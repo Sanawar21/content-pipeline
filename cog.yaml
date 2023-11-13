@@ -133,8 +133,8 @@ build:
      - "tifffile==2023.9.26"
      - "tiktoken==0.3.3"
      - "tomli==2.0.1"
-     - "torch==2.1.0"
-     - "torchvision==0.16.0"
+    #  - "torch==2.1.0"
+    #  - "torchvision==0.16.0"
      - "tqdm==4.66.1"
      - "traitlets==5.13.0"
      - "triton"
@@ -179,7 +179,7 @@ build:
   # commands run after the environment is setup
   run:
     - "apt-get update && apt-get install ffmpeg libsm6 libxext6  -y"
-    - "pip3 install torch==2.1.0"
+    - "pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118"
     # - "apt-get install libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools"
     # - "pip install torch==2.1.0 torchvision==0.10.1 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html"
     # - "pip3 install torch torchvision torchaudio"

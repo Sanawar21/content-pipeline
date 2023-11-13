@@ -92,7 +92,7 @@ def generate(voice, description, workflow):
         audio.clone(voice, description)
 
     audio.generate(voice)
-    # captions.generate_srt()
+    captions.generate_srt()
     status.set(status.generating_lipsync)
     video.generate_video()
     status.set(status.enhancing_video)
