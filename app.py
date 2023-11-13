@@ -86,6 +86,7 @@ def end_session():
 
 def generate(voice, description, workflow):
     # try:
+    restore_dirs()
     content.process_workflow(workflow)
     status.set(status.generating_audio)
     if voice not in audio.list_voices().keys():
@@ -110,7 +111,6 @@ def generate(voice, description, workflow):
     status.set(status.combining_audio_video)
     video.merge_audio_and_video()
     status.set(status.done)
-    restore_dirs()
     return status.done
     # except Exception as e:
     #     return e
