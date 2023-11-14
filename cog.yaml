@@ -161,16 +161,16 @@ build:
       && apt-get clean
     - "apt-get update && apt-get install ffmpeg libsm6 libxext6  -y"
     - >
-      mkdir -p /tmp/distr && \
-      cd /tmp/distr && \
-      wget https://download.imagemagick.org/ImageMagick/download/releases/ImageMagick-7.0.11-2.tar.xz && \
-      tar xvf ImageMagick-7.0.11-2.tar.xz && \
-      cd ImageMagick-7.0.11-2 && \
-      ./configure --enable-shared=yes --disable-static --without-perl && \
-      make && \
-      make install && \
-      ldconfig /usr/local/lib && \
-      cd /tmp && \
+      mkdir -p /tmp/distr && 
+      cd /tmp/distr && 
+      wget https://download.imagemagick.org/ImageMagick/download/releases/ImageMagick-7.0.11-2.tar.xz && 
+      tar xvf ImageMagick-7.0.11-2.tar.xz && 
+      cd ImageMagick-7.0.11-2 && 
+      ./configure --enable-shared=yes --disable-static --without-perl && 
+      make && 
+      make install && 
+      ldconfig /usr/local/lib && 
+      cd /tmp && 
       rm -rf distr
     - "pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118"
     - >
