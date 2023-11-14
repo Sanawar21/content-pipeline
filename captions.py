@@ -156,7 +156,7 @@ def generate_srt():
 
 def __create_subtitles_clip(
     video_file=str(paths.b_rolled_video),
-    font="AppleTea",
+    # font="AppleTea",
     fontsize=100,
     color="white",
     method="caption",
@@ -167,7 +167,7 @@ def __create_subtitles_clip(
 
     def generator(txt): return TextClip(
         txt,
-        font=font,
+        # font=font,
         fontsize=fontsize,
         color=color,
         method=method,
