@@ -178,7 +178,7 @@ build:
 
   # commands run after the environment is setup
   run:
-    - "apt-get update \
+    - """apt-get update \
     && apt-get install -qq -y build-essential xvfb xdg-utils wget unzip ffmpeg libpq-dev vim libmagick++-dev fonts-liberation sox bc gsfonts --no-install-recommends\
     && apt-get clean"
     - "apt-get update && apt-get install ffmpeg libsm6 libxext6  -y"
@@ -192,9 +192,12 @@ build:
     make install && \
     ldconfig /usr/local/lib && \
     cd /tmp && \
-    rm -rf distr"
+    rm -rf distr"""
+
+
     - "pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118"
     - "if [ -f /etc/ImageMagick-7/policy.xml ] ; then sed -i 's/<policy domain="coder" rights="none" pattern="PDF" \/>/<policy domain="coder" rights="read|write" pattern="PDF" \/>/g' /etc/ImageMagick-7/policy.xml ; else echo did not see file /etc/ImageMagick-7/policy.xml ; fi"
+
     # - "apt-get install imagemagick -y"
     # - "apt-get install libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools"
     # - "pip install torch==2.1.0 torchvision==0.10.1 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html"
