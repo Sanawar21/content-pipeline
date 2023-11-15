@@ -1,3 +1,4 @@
+from moviepy.editor import TextClip
 import os
 import shutil
 import pathlib
@@ -55,12 +56,24 @@ class Paths:
 
     whisper_folder = base_path / "whisper_timestamped"
 
+    fonts_folder = base_path / "fonts"
+    built_in_fonts = TextClip.list("font")
+    custom_fonts = {
+        "AppleTeaTest": str(fonts_folder / "AppleTea/AppleTea.ttf")
+    }
+
     def get_b_rolls(self):
         return sorted([
             str(self.b_rolls_folder / f)
             for f in os.listdir(self.b_rolls_folder)
             if os.path.isfile(os.path.join(self.b_rolls_folder, f))
         ])
+
+    def get_font_path(self, font_name):
+        if font_name not in self.built_in_fonts and font_name in self.custom_fonts.keys():
+            return self.custom_fonts[font_name]
+        else:
+            return font_name
 
     def get_input_audios(self):
         return [
