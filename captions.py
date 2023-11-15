@@ -157,7 +157,7 @@ def generate_srt():
 def __create_subtitles_clip(
     video_file=str(paths.b_rolled_video),
     font=paths.get_font_path("AppleTeaTest"),
-    fontsize=100,
+    relative_font_size=7,
     color="white",
     method="caption",
     align="center",
@@ -165,10 +165,15 @@ def __create_subtitles_clip(
     stroke_width=3,
 ):
 
+    __create_temp_srt()
+    srt_file = str(paths.temp_srt)
+    vid_size = VideoFileClip(video_file).size
+    font_size = int(vid_size[1] * relative_font_size / 100)
+
     def generator(txt): return TextClip(
         txt,
         font=font,
-        fontsize=fontsize,
+        fontsize=font_size,
         color=color,
         method=method,
         align=align,
@@ -176,10 +181,8 @@ def __create_subtitles_clip(
         stroke_width=stroke_width,
     )
 
-    __create_temp_srt()
-    srt_file = str(paths.temp_srt)
     sub = SubtitlesClip(srt_file, generator)
-    sub.size = VideoFileClip(video_file).size
+    sub.size = vid_size
     os.remove(paths.temp_srt)
     return sub.set_position(("center", 0.70), relative=True)
 
