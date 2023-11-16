@@ -5,13 +5,13 @@ from tqdm import tqdm
 from utils import paths
 from moviepy.editor import VideoFileClip, AudioFileClip
 
-FPS = None
+FPS = 16
 
 
 def preprocess():
     unprocessed = VideoFileClip(str(paths.input_video))
     trimmed = unprocessed.subclip(2, -2)
-    reduced = trimmed.set_fps(24)
+    reduced = trimmed.set_fps(16)
     reduced.write_videofile(str(paths.preprocessed_video), codec="libx264")
 
 
