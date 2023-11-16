@@ -8,6 +8,40 @@ from moviepy.editor import VideoFileClip, AudioFileClip
 FPS = 16
 
 
+def __change_fps(input_video_path=str(paths.output_video), output_video_path=str(paths.output_video), new_fps=FPS):
+    # Open the video file
+    video_capture = cv2.VideoCapture(input_video_path)
+
+    # Get the current FPS of the video
+    current_fps = video_capture.get(cv2.CAP_PROP_FPS)
+
+    # Get the video's width, height, and codec information
+    width = int(video_capture.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(video_capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    codec = int(video_capture.get(cv2.CAP_PROP_FOURCC))
+
+    # Create VideoWriter object to write the output video
+    video_writer = cv2.VideoWriter(
+        output_video_path, codec, new_fps, (width, height))
+
+    while True:
+        # Read a frame from the video
+        ret, frame = video_capture.read()
+
+        if not ret:
+            break  # Break the loop if no frame is read
+
+        # Write the frame to the output video
+        video_writer.write(frame)
+
+    # Release the video capture and writer objects
+    video_capture.release()
+    video_writer.release()
+
+    print(
+        f"Video converted successfully from {current_fps} FPS to {new_fps} FPS.")
+
+
 def preprocess():
     unprocessed = VideoFileClip(str(paths.input_video))
     trimmed = unprocessed.subclip(2, -2)
@@ -71,6 +105,7 @@ def generate_video():
 
 def enhance_video():
     global FPS
+    __change_fps()
     outputPath = str(paths.outputs_folder)
     inputVideoPath = str(paths.output_video)
     unProcessedFramesFolderPath = str(paths.unprocessed_frames_folder)
