@@ -69,7 +69,6 @@ def __generate_intervals(duration: int):
 def zoom_video_at_intervals(percentage=0.8):
     clips = []
     input_path = str(paths.enhanced_video)
-    output_path = str(paths.zoomed_video)
     video = VideoFileClip(input_path)
     zoom_intervals = __generate_intervals(video.duration)
     interval_clips, all_intervals = __split_into_intervals(
@@ -81,8 +80,7 @@ def zoom_video_at_intervals(percentage=0.8):
         else:
             clips.append(interval_clips[i])
 
-    final_video = concatenate_videoclips(clips, method="compose")
-    final_video.write_videofile(output_path, codec='libx264')
+    return concatenate_videoclips(clips, method="compose")
 
 
 if __name__ == "__main__":

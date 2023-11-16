@@ -134,16 +134,14 @@ def images_to_video():
     cv2.destroyAllWindows()
 
 
-def merge_audio_and_video(video_path: str = str(paths.captioned_video)):
-    if video_path == None:
-        video_path = str(paths.captioned_video)
+def merge_audio_and_video(video):
 
-    video_clip = VideoFileClip(video_path)
+    video_clip = video
     audio_clip = AudioFileClip(str(paths.audio))
 
     video_clip = video_clip.set_audio(audio_clip)
     video_clip.write_videofile(
-        "".join([video_path.split(".")[0], "_with_audio.mp4"]), codec="libx264")
+        "".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]), codec="libx264")
 
     video_clip.close()
     audio_clip.close()

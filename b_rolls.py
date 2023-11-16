@@ -61,8 +61,8 @@ def __resize_b_rolls(b_rolls: 'list[BRoll]', main_clip_w, main_clip_h):
     return resized_b_rolls
 
 
-def __blackout_sections(b_rolls: "list[BRoll]"):
-    video_clip = VideoFileClip(str(paths.zoomed_video))
+def __blackout_sections(video, b_rolls: "list[BRoll]"):
+    video_clip = video
 
     modified_sections = []
     last_end_time = 0
@@ -294,13 +294,13 @@ def __parse_srt_file(file_path):
     return subtitles
 
 
-def add_b_rolls():
+def add_b_rolls(video):
     b_rolls = __generate_b_rolls()
-    main_clip = __blackout_sections(b_rolls)
+    main_clip = __blackout_sections(video, b_rolls)
     resized_b_rolls = __resize_b_rolls(b_rolls, main_clip.w, main_clip.h)
-    final_clip = __create_composite_video(main_clip, resized_b_rolls)
-    final_clip.write_videofile(str(paths.b_rolled_video), codec="libx264")
+    return __create_composite_video(main_clip, resized_b_rolls)
 
 
 if __name__ == "__main__":
-    add_b_rolls()
+    # add_b_rolls()
+    pass

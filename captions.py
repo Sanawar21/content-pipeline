@@ -155,7 +155,7 @@ def generate_srt():
 
 
 def __create_subtitles_clip(
-    video_file=str(paths.b_rolled_video),
+    video_file,
     font=paths.get_font_path("AppleTeaTest"),
     relative_font_size=5,
     color="white",
@@ -187,24 +187,24 @@ def __create_subtitles_clip(
     return sub.set_position(("center", 0.70), relative=True)
 
 
-def __add_subtitles_to_video(subtitles_clip):
-    video_path = str(paths.b_rolled_video)
+def __add_subtitles_to_video(video, subtitles_clip):
     global video_w, video_h
-    video_clip = VideoFileClip(video_path)
+    video_clip = video
     video_w, video_h = video_clip.size
 
     final_clip = CompositeVideoClip([video_clip, subtitles_clip])
     return final_clip.set_duration(video_clip.duration)
 
 
-def add_to_video():
+def add_to_video(video):
     os.chdir(paths.whisper_folder)
     generate_srt()
-    subtitles_clip = __create_subtitles_clip()
-    final_clip = __add_subtitles_to_video(subtitles_clip)
-    final_clip.write_videofile(str(paths.captioned_video), fps=final_clip.fps)
+    subtitles_clip = __create_subtitles_clip(video)
+    final_clip = __add_subtitles_to_video(video, subtitles_clip)
     os.chdir(paths.base_path)
+    return final_clip
 
 
 if __name__ == "__main__":
-    add_to_video()
+    # add_to_video()
+    pass

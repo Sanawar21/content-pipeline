@@ -102,13 +102,13 @@ def generate(voice, description, workflow):
     os.rename(paths.enhanced_video, paths.output_video)
     video.enhance_video()
     status.set(status.zooming_video)
-    zoom.zoom_video_at_intervals()
+    zoomed = zoom.zoom_video_at_intervals()
     status.set(status.adding_brolls)
-    b_rolls.add_b_rolls()
+    b_rolled = b_rolls.add_b_rolls(zoomed)
     status.set(status.generating_subtitles)
-    captions.add_to_video()
+    captioned = captions.add_to_video(b_rolled)
     status.set(status.combining_audio_video)
-    video.merge_audio_and_video()
+    video.merge_audio_and_video(video=captioned)
     status.set(status.done)
     return status.done
     # except Exception as e:
