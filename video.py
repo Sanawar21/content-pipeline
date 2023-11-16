@@ -11,7 +11,7 @@ FPS = 16
 def preprocess():
     unprocessed = VideoFileClip(str(paths.input_video))
     trimmed = unprocessed.subclip(2, -2)
-    reduced = trimmed.set_fps(16)
+    reduced = trimmed.set_fps(FPS)
     reduced.write_videofile(str(paths.preprocessed_video), codec="libx264")
 
 
@@ -81,9 +81,14 @@ def enhance_video():
 
     vidcap = cv2.VideoCapture(inputVideoPath)
     numberOfFrames = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
-    fps = vidcap.get(cv2.CAP_PROP_FPS)
-    FPS = fps
-    print("FPS: ", fps, "Frames: ", numberOfFrames)
+    print("Original FPS: ", vidcap.get(
+        cv2.CAP_PROP_FPS), "Frames: ", numberOfFrames)
+
+    new_fps = FPS  # Set the desired new FPS
+    vidcap = cv2.VideoCapture(inputVideoPath)
+    vidcap.set(cv2.CAP_PROP_FPS, new_fps)
+
+    print("New FPS: ", vidcap.get(cv2.CAP_PROP_FPS), "Frames: ", numberOfFrames)
 
     for frameNumber in tqdm(range(numberOfFrames)):
         _, image = vidcap.read()
