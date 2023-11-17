@@ -167,7 +167,7 @@ def __create_subtitles_clip(
 
     __create_temp_srt()
     srt_file = str(paths.temp_srt)
-    vid_size = VideoFileClip(video_file).size
+    vid_size = video_file.size
     font_size = int(vid_size[1] * relative_font_size / 100)
 
     def generator(txt): return TextClip(
