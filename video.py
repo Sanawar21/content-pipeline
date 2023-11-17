@@ -5,7 +5,7 @@ from tqdm import tqdm
 from utils import paths
 from moviepy.editor import VideoFileClip, AudioFileClip
 
-FPS = 30
+FPS = 24
 
 
 def __change_fps(input_video_path=str(paths.output_video), output_video_path=str(paths.output_video), new_fps=FPS):
