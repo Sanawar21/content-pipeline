@@ -159,7 +159,7 @@ def merge_audio_and_video(video):
 
     video_clip = video_clip.set_audio(audio_clip)
     video_clip.write_videofile(
-        "".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]), codec="libx264")
+        "".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]), threads=8,  codec="libx264")
 
     video_clip.close()
     audio_clip.close()
