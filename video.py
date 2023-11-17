@@ -5,38 +5,22 @@ from tqdm import tqdm
 from utils import paths
 from moviepy.editor import VideoFileClip, AudioFileClip
 
-FPS = 16
+FPS = 30
 
 
 def __change_fps(input_video_path=str(paths.output_video), output_video_path=str(paths.output_video), new_fps=FPS):
-    # Open the video file
     video_capture = cv2.VideoCapture(input_video_path)
-
-    # Get the current FPS of the video
     current_fps = video_capture.get(cv2.CAP_PROP_FPS)
 
-    # Get the video's width, height, and codec information
-    width = int(video_capture.get(cv2.CAP_PROP_FRAME_WIDTH))
-    height = int(video_capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    codec = int(video_capture.get(cv2.CAP_PROP_FOURCC))
+    if input_video_path == output_video_path:
+        new_input_video_path = "".join(
+            [input_video_path.split(".")[0], "_.mp4"])
+        os.rename(input_video_path, new_input_video_path)
+    else:
+        new_input_video_path = input_video_path
 
-    # Create VideoWriter object to write the output video
-    video_writer = cv2.VideoWriter(
-        output_video_path, codec, new_fps, (width, height))
-
-    while True:
-        # Read a frame from the video
-        ret, frame = video_capture.read()
-
-        if not ret:
-            break  # Break the loop if no frame is read
-
-        # Write the frame to the output video
-        video_writer.write(frame)
-
-    # Release the video capture and writer objects
-    video_capture.release()
-    video_writer.release()
+    os.system(
+        f"ffmpeg -i {new_input_video_path} -filter:v fps={new_fps} {output_video_path} -y")
 
     print(
         f"Video converted successfully from {current_fps} FPS to {new_fps} FPS.")
@@ -105,7 +89,6 @@ def generate_video():
 
 def enhance_video():
     global FPS
-    __change_fps()
     outputPath = str(paths.outputs_folder)
     inputVideoPath = str(paths.output_video)
     unProcessedFramesFolderPath = str(paths.unprocessed_frames_folder)
@@ -114,15 +97,10 @@ def enhance_video():
     if not os.path.exists(unProcessedFramesFolderPath):
         os.makedirs(unProcessedFramesFolderPath)
 
+    __change_fps()
+
     vidcap = cv2.VideoCapture(inputVideoPath)
     numberOfFrames = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
-    print("Original FPS: ", vidcap.get(
-        cv2.CAP_PROP_FPS), "Frames: ", numberOfFrames)
-
-    new_fps = FPS  # Set the desired new FPS
-    vidcap = cv2.VideoCapture(inputVideoPath)
-    vidcap.set(cv2.CAP_PROP_FPS, new_fps)
-
     print("New FPS: ", vidcap.get(cv2.CAP_PROP_FPS), "Frames: ", numberOfFrames)
 
     for frameNumber in tqdm(range(numberOfFrames)):
