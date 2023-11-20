@@ -5,13 +5,11 @@ from cog import BasePredictor, Input, Path
 from app import generate
 from utils import paths, restore_dirs
 import shutil
-import torch
 
 
 class Predictor(BasePredictor):
     def setup(self) -> None:
         """Load the model into memory to make running multiple predictions efficient"""
-        # self.model = torch.load("./weights.pth")
 
     def predict(
         self,

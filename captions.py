@@ -1,6 +1,5 @@
-from moviepy.editor import VideoFileClip, TextClip, CompositeVideoClip
+from moviepy.editor import TextClip, CompositeVideoClip
 from moviepy.video.tools.subtitles import SubtitlesClip
-from fuzzywuzzy import fuzz, process
 from whisper_timestamped import whisper_timestamped as whisper
 from utils import paths
 import os

@@ -1,5 +1,5 @@
 from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip, concatenate_videoclips
-from fuzzywuzzy import fuzz, process
+from fuzzywuzzy import process
 from utils import paths, read_content
 from video import FPS
 from dotenv import load_dotenv
