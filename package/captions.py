@@ -1,7 +1,7 @@
 from moviepy.editor import TextClip, CompositeVideoClip
 from moviepy.video.tools.subtitles import SubtitlesClip
 from ..whisper_timestamped import whisper_timestamped as whisper
-from utils import paths
+from .utils import paths
 import os
 import re
 

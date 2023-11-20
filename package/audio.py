@@ -2,7 +2,7 @@ import os
 import math
 import requests
 from dotenv import load_dotenv
-from utils import paths, read_content
+from .utils import paths, read_content
 from pydub import AudioSegment
 
 

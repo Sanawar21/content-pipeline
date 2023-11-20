@@ -1,6 +1,6 @@
 from moviepy.video.fx.all import crop
 from moviepy.editor import VideoFileClip, concatenate_videoclips
-from utils import paths
+from .utils import paths
 
 
 def __zoom(clip, percentage):

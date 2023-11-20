@@ -2,7 +2,7 @@ import subprocess
 import cv2
 import os
 from tqdm import tqdm
-from utils import paths
+from .utils import paths
 from moviepy.editor import VideoFileClip, AudioFileClip
 
 FPS = 30

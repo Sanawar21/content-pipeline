@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-from utils import paths
+from .utils import paths
 from dotenv import load_dotenv
 
 load_dotenv(paths.env_path)
