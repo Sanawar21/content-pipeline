@@ -1,13 +1,13 @@
 from flask import Flask, request, jsonify, send_file
 from werkzeug.utils import secure_filename
-from utils import status, start_vps, close_vps, restore_dirs, paths
+from package.utils import status, start_vps, close_vps, restore_dirs, paths
 import os
-import audio
-import video
-import captions
-import zoom
-import b_rolls
-import content
+from package import audio
+from package import video
+from package import captions
+from package import zoom
+from package import b_rolls
+from package import content
 
 
 app = Flask(__name__)

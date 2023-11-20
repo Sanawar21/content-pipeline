@@ -26,8 +26,8 @@ class Status:
 
 
 class Paths:
-    base_path = pathlib.Path(__file__).parent.resolve()
-
+    base_path = pathlib.Path(__file__).parent.parent.resolve()
+    env_path = base_path / ".env"
     inputs_folder = base_path / "inputs"
     input_audio = inputs_folder / "_audio.wav"
     input_video = inputs_folder / "video.mp4"

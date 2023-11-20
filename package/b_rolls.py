@@ -10,7 +10,7 @@ import os
 import shutil
 import numpy as np
 
-load_dotenv()
+load_dotenv(paths.env_path)
 
 
 class BRoll:

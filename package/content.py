@@ -4,7 +4,7 @@ import os
 from utils import paths
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(paths.env_path)
 
 
 def process_workflow(workflow):

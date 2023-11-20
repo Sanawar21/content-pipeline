@@ -6,7 +6,7 @@ from utils import paths, read_content
 from pydub import AudioSegment
 
 
-load_dotenv()
+load_dotenv(paths.env_path)
 API_KEY = os.getenv("ELEVENLABS")
 BASE_URL = "https://api.elevenlabs.io"
 
