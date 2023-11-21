@@ -97,10 +97,10 @@ def generate(voice, description, workflow):
     video.generate_video()
     status.set(status.enhancing_video)
     video.enhance_video()
-    # os.rename(paths.output_video, "".join(
-    #     [str(paths.output_video).split(".")[0], "_.mp4"]))
-    # os.rename(paths.enhanced_video, paths.output_video)
-    # video.enhance_video()
+    os.rename(paths.output_video, "".join(
+        [str(paths.output_video).split(".")[0], "_.mp4"]))
+    os.rename(paths.enhanced_video, paths.output_video)
+    video.enhance_video()
 
     # test for better quality
     # os.rename(paths.output_video, paths.enhanced_video)

@@ -47,8 +47,8 @@ def generate_video():
     rescaleFactor = 1
     nosmooth = True
 
-    # use_hd_model = False
-    use_hd_model = True  # test for better quality
+    use_hd_model = False
+    # use_hd_model = True  # test for better quality
     checkpoint_path = 'checkpoints/wav2lip.pth' if not use_hd_model else 'checkpoints/wav2lip_gan.pth'
 
     command = [
