@@ -3,7 +3,7 @@
 
 from cog import BasePredictor, Input, Path
 from app import generate
-from package.utils import paths, restore_dirs
+from src.utils import paths, restore_dirs
 import shutil
 
 
