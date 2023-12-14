@@ -1,6 +1,6 @@
 import os
 import subprocess
-from utils import paths
+from src.utils import paths
 
 # Step 1: Clone the Wav2Lip repository
 subprocess.run(["git", "clone", "https://github.com/justinjohn0306/Wav2Lip"])
