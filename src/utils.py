@@ -50,6 +50,8 @@ class Paths:
 
     vr_folder = base_path / "Wav2Lip"
 
+    fs_folder = base_path / "SadTalker-Video-Lip-Sync"
+
     enhance_folder = base_path / "wav2lip-HD"
     wav2lipPath = enhance_folder / "Wav2Lip-master"
     gfpganPath = enhance_folder / "GFPGAN-master"

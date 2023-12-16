@@ -2,28 +2,58 @@ import os
 import subprocess
 from src.utils import paths
 
-# Step 1: Clone the Wav2Lip repository
-subprocess.run(["git", "clone", "https://github.com/justinjohn0306/Wav2Lip"])
-os.chdir(paths.base_path / "Wav2Lip")
-
-# Step 2: Download pretrained models
-subprocess.run(["wget", "https://github.com/justinjohn0306/Wav2Lip/releases/download/models/wav2lip.pth",
-               "-O", "checkpoints/wav2lip.pth"])
-subprocess.run(["wget", "https://github.com/justinjohn0306/Wav2Lip/releases/download/models/wav2lip_gan.pth",
-               "-O", "checkpoints/wav2lip_gan.pth"])
-subprocess.run(["wget", "https://github.com/justinjohn0306/Wav2Lip/releases/download/models/resnet50.pth",
-               "-O", "checkpoints/resnet50.pth"])
-subprocess.run(["wget", "https://github.com/justinjohn0306/Wav2Lip/releases/download/models/mobilenet.pth",
-               "-O", "checkpoints/mobilenet.pth"])
-
-# Step 3: Install required packages
+# Step 0: Download conda
 subprocess.run(
-    ["pip3", "install", "https://raw.githubusercontent.com/AwaleSajil/ghc/master/ghc-1.0-py3-none-any.whl"])
+    "wget https://repo.anaconda.com/archive/Anaconda3-2023.07-2-Linux-x86_64.sh", shell=True, check=True)
+
+# Step 1: Setup SadTalker
 subprocess.run(
-    ["pip3", "install", "git+https://github.com/elliottzheng/batch-face.git@master"])
-subprocess.run(["pip3", "install", "ffmpeg-python", "mediapip3e==0.8.11"])
+    ["git", "clone", "https://github.com/Zz-ww/SadTalker-Video-Lip-Sync"])
+os.chdir(paths.base_path / "SadTalker-Video-Lip-Sync")
+
+# Define the commands
+commands = [
+    "python3.8 -m pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113",
+    "pip install ffmpeg",
+    "python3.8 -m pip install -r requirements.txt",
+    "pip install ninja",
+    "gdown https://drive.google.com/uc\\?id\\=1TB0QWxiGtagEbdwDIpIVeQftKtDBj8Q5",
+    "rm -rf checkpoints",
+    "unzip checkpoints.zip",
+    "rm checkpoints.zip",
+    "pip install --upgrade face-alignment==1.3.3",
+    "pip install librosa --upgrade",
+    "pip install Pillow==9.5.0"
+]
+
+# Execute the commands
+for command in commands:
+    subprocess.run(command, shell=True, check=True)
 
 os.chdir(paths.base_path)
+
+# # Step 1: Clone the Wav2Lip repository
+# subprocess.run(["git", "clone", "https://github.com/justinjohn0306/Wav2Lip"])
+# os.chdir(paths.base_path / "Wav2Lip")
+
+# # Step 2: Download pretrained models
+# subprocess.run(["wget", "https://github.com/justinjohn0306/Wav2Lip/releases/download/models/wav2lip.pth",
+#                "-O", "checkpoints/wav2lip.pth"])
+# subprocess.run(["wget", "https://github.com/justinjohn0306/Wav2Lip/releases/download/models/wav2lip_gan.pth",
+#                "-O", "checkpoints/wav2lip_gan.pth"])
+# subprocess.run(["wget", "https://github.com/justinjohn0306/Wav2Lip/releases/download/models/resnet50.pth",
+#                "-O", "checkpoints/resnet50.pth"])
+# subprocess.run(["wget", "https://github.com/justinjohn0306/Wav2Lip/releases/download/models/mobilenet.pth",
+#                "-O", "checkpoints/mobilenet.pth"])
+
+# # Step 3: Install required packages
+# subprocess.run(
+#     ["pip3", "install", "https://raw.githubusercontent.com/AwaleSajil/ghc/master/ghc-1.0-py3-none-any.whl"])
+# subprocess.run(
+#     ["pip3", "install", "git+https://github.com/elliottzheng/batch-face.git@master"])
+# subprocess.run(["pip3", "install", "ffmpeg-python", "mediapip3e==0.8.11"])
+
+# os.chdir(paths.base_path)
 
 # Step 4: Clone the wav2lip-HD repository
 subprocess.run(["git", "clone", "https://github.com/indianajson/wav2lip-HD"])

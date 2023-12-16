@@ -5,7 +5,7 @@ from tqdm import tqdm
 from .utils import paths
 from moviepy.editor import VideoFileClip, AudioFileClip
 
-FPS = 30
+FPS = 25
 
 
 def __change_fps(input_video_path=str(paths.output_video), output_video_path=str(paths.output_video), new_fps=FPS):
@@ -34,57 +34,10 @@ def preprocess():
 
 
 def generate_video():
-    os.chdir(paths.vr_folder)
-    output_file_path = paths.output_video
-
-    if os.path.exists(output_file_path):
-        os.remove(output_file_path)
-
-    pad_top = 0
-    pad_bottom = 10
-    pad_left = 0
-    pad_right = 0
-    rescaleFactor = 1
-    nosmooth = True
-
-    use_hd_model = False
-    # use_hd_model = True  # test for better quality
-    checkpoint_path = 'checkpoints/wav2lip.pth' if not use_hd_model else 'checkpoints/wav2lip_gan.pth'
-
-    command = [
-        'python',
-        'inference.py',
-        '--checkpoint_path',
-        checkpoint_path,
-        '--face',
-        str(paths.input_video),
-        '--audio',
-        str(paths.audio),
-        '--pads',
-        str(pad_top),
-        str(pad_bottom),
-        str(pad_left),
-        str(pad_right),
-        '--resize_factor',
-        str(rescaleFactor),
-        '--outfile',
-        str(paths.output_video)
-    ]
-
-    if not nosmooth:
-        command.append('--nosmooth')
-
-    result = subprocess.run(command, stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE, text=True)
-
-    print("STDOUT:")
-    print(result.stdout)
-    print("STDERR:")
-    print(result.stderr)
-    if result.returncode == 0:
-        print("Command executed successfully.")
-    else:
-        print(f"Command failed with return code {result.returncode}.")
+    os.chdir(paths.fs_folder)
+    command = f"python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.input_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)}"
+    subprocess.run(command, shell=True, check=True)
+    # TODO: Copy output video from the timestamped folder to project output folder
     os.chdir(paths.base_path)
 
 
@@ -98,7 +51,7 @@ def enhance_video():
     if not os.path.exists(unProcessedFramesFolderPath):
         os.makedirs(unProcessedFramesFolderPath)
 
-    __change_fps()
+    # __change_fps()
 
     vidcap = cv2.VideoCapture(inputVideoPath)
     numberOfFrames = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
