@@ -13,17 +13,17 @@ os.chdir(paths.base_path / "SadTalker-Video-Lip-Sync")
 
 # Define the commands
 commands = [
-    "python3.8 -m pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113",
-    "pip install ffmpeg",
-    "python3.8 -m pip install -r requirements.txt",
-    "pip install ninja",
+    "python3 -m pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113",
+    "pip3 install ffmpeg",
+    "python3 -m pip install -r requirements.txt",
+    "pip3 install ninja",
     "gdown https://drive.google.com/uc\\?id\\=1TB0QWxiGtagEbdwDIpIVeQftKtDBj8Q5",
     "rm -rf checkpoints",
     "unzip checkpoints.zip",
     "rm checkpoints.zip",
-    "pip install --upgrade face-alignment==1.3.3",
-    "pip install librosa --upgrade",
-    "pip install Pillow==9.5.0"
+    "pip3 install --upgrade face-alignment==1.3.3",
+    "pip3 install librosa --upgrade",
+    "pip3 install Pillow==9.5.0"
 ]
 
 # Execute the commands
