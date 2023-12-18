@@ -3,34 +3,34 @@ import subprocess
 from src.utils import paths
 
 # Step 0: Download conda
-subprocess.run(
-    "wget https://repo.anaconda.com/archive/Anaconda3-2023.07-2-Linux-x86_64.sh", shell=True, check=True)
+# subprocess.run(
+#     "wget https://repo.anaconda.com/archive/Anaconda3-2023.07-2-Linux-x86_64.sh", shell=True, check=True)
 
 # Step 1: Setup SadTalker
 subprocess.run(
     ["git", "clone", "https://github.com/Zz-ww/SadTalker-Video-Lip-Sync"])
-os.chdir(paths.base_path / "SadTalker-Video-Lip-Sync")
+# os.chdir(paths.base_path / "SadTalker-Video-Lip-Sync")
 
 # Define the commands
-commands = [
-    "python3 -m pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113",
-    "pip3 install ffmpeg",
-    "python3 -m pip install -r requirements.txt",
-    "pip3 install ninja",
-    "gdown https://drive.google.com/uc\\?id\\=1TB0QWxiGtagEbdwDIpIVeQftKtDBj8Q5",
-    "rm -rf checkpoints",
-    "unzip checkpoints.zip",
-    "rm checkpoints.zip",
-    "pip3 install --upgrade face-alignment==1.3.3",
-    "pip3 install librosa --upgrade",
-    "pip3 install Pillow==9.5.0"
-]
+# commands = [
+#     "python3 -m pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113",
+#     "pip3 install ffmpeg",
+#     "python3 -m pip install -r requirements.txt",
+#     "pip3 install ninja",
+#     "gdown https://drive.google.com/uc\\?id\\=1TB0QWxiGtagEbdwDIpIVeQftKtDBj8Q5",
+#     "rm -rf checkpoints",
+#     "unzip checkpoints.zip",
+#     "rm checkpoints.zip",
+#     "pip3 install --upgrade face-alignment==1.3.3",
+#     "pip3 install librosa --upgrade",
+#     "pip3 install Pillow==9.5.0"
+# ]
 
-# Execute the commands
-for command in commands:
-    subprocess.run(command, shell=True, check=True)
+# # Execute the commands
+# for command in commands:
+#     subprocess.run(command, shell=True, check=True)
 
-os.chdir(paths.base_path)
+# os.chdir(paths.base_path)
 
 # # Step 1: Clone the Wav2Lip repository
 # subprocess.run(["git", "clone", "https://github.com/justinjohn0306/Wav2Lip"])
