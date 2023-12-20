@@ -31,13 +31,20 @@ def __change_fps(input_video_path=str(paths.output_video), output_video_path=str
 def preprocess():
     unprocessed = VideoFileClip(str(paths.input_video))
     trimmed = unprocessed.subclip(2, -2)
-    reduced = trimmed.set_fps(FPS)
-    reduced.write_videofile(str(paths.preprocessed_video), codec="libx264")
+    target_resolution = (1080, 1920)
+    resized_clip = trimmed.resize(target_resolution)
+    resized_clip.write_videofile(
+        str(paths.preprocessed_video), codec="libx264")
 
 
 def generate_video():
     os.chdir(paths.fs_folder)
-    command = f"python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.input_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)}"
+    preprocess()
+    if os.path.exists(paths.preprocessed_video):
+        command = f"python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.preprocessed_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)}"
+    else:
+        command = f"python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.input_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)}"
+
     subprocess.run(command, shell=True, check=True)
     year = datetime.now().year
     folder_path = [f for f in os.listdir(paths.outputs_folder) if os.path.isdir(
