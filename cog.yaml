@@ -179,8 +179,7 @@ build:
     - "conda --version"
     - "conda create --name sadtalker python=3.8"
     - "conda init bash"
-    - "exec bash"
-    - ". /root/.bashrc && /root/anaconda3/bin/conda init bash && /root/anaconda3/bin/conda activate sadtalker"
+    - ". /root/.bashrc && conda init bash && conda activate sadtalker"
 # TODO: Try adding all commands in the above statement
     # - "conda activate sadtalker"
     - "conda install -c conda-forge libstdcxx-ng -y"
