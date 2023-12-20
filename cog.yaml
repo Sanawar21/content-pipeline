@@ -180,6 +180,7 @@ build:
     - "conda --version"
     - "conda create --name sadtalker python=3.8"
     - "conda init bash"
+    - "exec bash"
     - "conda activate sadtalker"
     - "conda install -c conda-forge libstdcxx-ng -y"
     - "pip install Pillow==9.5.0"
