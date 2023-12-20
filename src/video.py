@@ -33,8 +33,12 @@ def preprocess():
     trimmed = unprocessed.subclip(2, -2)
     target_resolution = (1080, 1920)
     resized_clip = trimmed.resize(target_resolution)
+
+    if resized_clip.fps > FPS:
+        resized_clip = resized_clip.set_fps(FPS)
+
     resized_clip.write_videofile(
-        str(paths.preprocessed_video), codec="libx264", threads=8)
+        str(paths.preprocessed_video), codec="libx264", threads=8, verbose=True)
 
 
 def generate_video():

@@ -170,10 +170,6 @@ build:
     - "pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118"
     - >
       if [ -f /etc/ImageMagick-7/policy.xml ] ; then sed -i 's/<policy domain="coder" rights="none" pattern="PDF" \/>/<policy domain="coder" rights="read|write" pattern="PDF" \/>/g' /etc/ImageMagick-7/policy.xml ; else echo did not see file /etc/ImageMagick-7/policy.xml ; fi
-    - apt-get install libffi-dev
-    - apt-get install libffi7
-    - apt-get install libstdc++6
-    
 
 # predict.py defines how predictions are run on your model
 predict: "predict.py:Predictor"
