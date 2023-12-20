@@ -147,7 +147,9 @@ build:
      - "pydantic==1.10.12"
      - "cog==0.7.2"
      
-
+  shell:
+    - ["conda", "run", "-n", "venv", "/bin/bash", "-c"]
+    
   # commands run after the environment is setup
   run:
     - >
