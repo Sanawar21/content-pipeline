@@ -1,6 +1,8 @@
 import subprocess
 import cv2
 import os
+import shutil
+from datetime import datetime
 from tqdm import tqdm
 from .utils import paths
 from moviepy.editor import VideoFileClip, AudioFileClip
@@ -37,7 +39,13 @@ def generate_video():
     os.chdir(paths.fs_folder)
     command = f"python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.input_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)}"
     subprocess.run(command, shell=True, check=True)
-    # TODO: Copy output video from the timestamped folder to project output folder
+    year = datetime.now().year
+    folder_path = [f for f in os.listdir(paths.outputs_folder) if os.path.isdir(
+        os.path.join(paths.outputs_folder, f)) and f.startswith(str(year))][0]
+
+    video_path = f"{paths.outputs_folder}/{folder_path}/video##audio_full.mp4"
+    shutil.copyfile(video_path, paths.output_video)
+
     os.chdir(paths.base_path)
 
 
