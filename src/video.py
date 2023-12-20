@@ -34,7 +34,7 @@ def preprocess():
     target_resolution = (1080, 1920)
     resized_clip = trimmed.resize(target_resolution)
     resized_clip.write_videofile(
-        str(paths.preprocessed_video), codec="libx264")
+        str(paths.preprocessed_video), codec="libx264", threads=8)
 
 
 def generate_video():
