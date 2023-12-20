@@ -1,6 +1,7 @@
 import subprocess
 import cv2
 import os
+import subprocess
 import shutil
 from datetime import datetime
 from tqdm import tqdm
@@ -11,8 +12,21 @@ FPS = 25
 
 
 def __change_fps(input_video_path=str(paths.output_video), output_video_path=str(paths.output_video), new_fps=FPS):
+    print("Changing FPS.")
+
+    # TODO: Fix
+    # Traceback (most recent call last):
+    # File "<stdin>", line 1, in <module>
+    # File "D:\projects\content-pipeline\src\video.py", line 40, in preprocess
+    #     __change_fps(str(paths.input_video),
+    # File "D:\projects\content-pipeline\src\video.py", line 24, in __change_fps
+    #     os.rename(input_video_path, new_input_video_path)
+    # PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'D:\\projects\\content-pipeline\\inputs\\video.mp4' -> 'D:\\projects\\content-pipeline\\inputs\\video_.mp4'
+
     video_capture = cv2.VideoCapture(input_video_path)
     current_fps = video_capture.get(cv2.CAP_PROP_FPS)
+    video_capture.release()
+    del video_capture
 
     if input_video_path == output_video_path:
         new_input_video_path = "".join(
@@ -21,33 +35,42 @@ def __change_fps(input_video_path=str(paths.output_video), output_video_path=str
     else:
         new_input_video_path = input_video_path
 
-    os.system(
-        f"ffmpeg -i {new_input_video_path} -filter:v fps={new_fps} {output_video_path} -y")
+    command = f"ffmpeg -i {new_input_video_path} -filter:v fps={new_fps} {output_video_path} -y",
+    subprocess.run(command, shell=True, check=True)
 
     print(
         f"Video converted successfully from {current_fps} FPS to {new_fps} FPS.")
 
 
 def preprocess():
+    # unprocessed = VideoFileClip(str(paths.input_video))
+    video_capture = cv2.VideoCapture(str(paths.input_video))
+    current_fps = video_capture.get(cv2.CAP_PROP_FPS)
+
+    if current_fps > FPS:
+        video_capture.release()
+        del video_capture
+
+        # unprocessed.close()
+        # del unprocessed
+        __change_fps(str(paths.input_video),
+                     str(paths.input_video))
+
     unprocessed = VideoFileClip(str(paths.input_video))
     trimmed = unprocessed.subclip(2, -2)
     target_resolution = (1080, 1920)
     resized_clip = trimmed.resize(target_resolution)
-
-    if resized_clip.fps > FPS:
-        resized_clip = resized_clip.set_fps(FPS)
 
     resized_clip.write_videofile(
         str(paths.preprocessed_video), codec="libx264", threads=8, verbose=True)
 
 
 def generate_video():
-    os.chdir(paths.fs_folder)
     preprocess()
     if os.path.exists(paths.preprocessed_video):
-        command = f"python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.preprocessed_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)}"
+        command = f"cd {str(paths.fs_folder)} && conda activate sadtalker && python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.preprocessed_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)} && conda deactivate sadtalker && cd .."
     else:
-        command = f"python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.input_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)}"
+        command = f"cd {str(paths.fs_folder)} && conda activate sadtalker && python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.input_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)} && conda deactivate sadtalker && cd .."
 
     subprocess.run(command, shell=True, check=True)
     year = datetime.now().year
@@ -56,8 +79,6 @@ def generate_video():
 
     video_path = f"{paths.outputs_folder}/{folder_path}/video##audio_full.mp4"
     shutil.copyfile(video_path, paths.output_video)
-
-    os.chdir(paths.base_path)
 
 
 def enhance_video():
