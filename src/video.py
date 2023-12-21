@@ -62,7 +62,7 @@ def preprocess():
     resized_clip = trimmed.resize(target_resolution)
 
     resized_clip.write_videofile(
-        str(paths.preprocessed_video), codec="libx264", threads=8, verbose=True)
+        str(paths.preprocessed_video), codec="libx264", threads=os.cpu_count(), verbose=True)
 
 
 def generate_video():
@@ -155,7 +155,7 @@ def merge_audio_and_video(video):
 
     video_clip = video_clip.set_audio(audio_clip)
     video_clip.write_videofile(
-        "".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]), threads=8,  codec="libx264")
+        "".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]), threads=os.cpu_count(),  codec="libx264")
 
     video_clip.close()
     audio_clip.close()
