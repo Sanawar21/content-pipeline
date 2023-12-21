@@ -69,15 +69,17 @@ def generate_video():
     preprocess()
     if os.path.exists(paths.preprocessed_video):
         command = f". /root/.bashrc && conda init bash && conda activate sadtalker && cd {str(paths.fs_folder)} && python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.preprocessed_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)} && conda deactivate && cd .."
+        file_name = "preprocessed##audio_full.mp4"
     else:
         command = f". /root/.bashrc && conda init bash && conda activate sadtalker && cd {str(paths.fs_folder)} && python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.input_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)} && conda deactivate && cd .."
+        file_name = "video##audio_full.mp4"
 
     subprocess.run(command, shell=True, check=True)
     year = datetime.now().year
     folder_path = [f for f in os.listdir(paths.outputs_folder) if os.path.isdir(
         os.path.join(paths.outputs_folder, f)) and f.startswith(str(year))][0]
 
-    video_path = f"{paths.outputs_folder}/{folder_path}/video##audio_full.mp4"
+    video_path = f"{paths.outputs_folder}/{folder_path}/{file_name}"
     shutil.copyfile(video_path, paths.output_video)
 
 
