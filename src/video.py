@@ -68,9 +68,9 @@ def preprocess():
 def generate_video():
     preprocess()
     if os.path.exists(paths.preprocessed_video):
-        command = f"cd {str(paths.fs_folder)} && conda activate sadtalker && python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.preprocessed_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)} && conda deactivate sadtalker && cd .."
+        command = f". /root/.bashrc && conda init bash && conda activate sadtalker && cd {str(paths.fs_folder)} && python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.preprocessed_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)} && conda deactivate sadtalker && cd .."
     else:
-        command = f"cd {str(paths.fs_folder)} && conda activate sadtalker && python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.input_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)} && conda deactivate sadtalker && cd .."
+        command = f". /root/.bashrc && conda init bash && conda activate sadtalker && cd {str(paths.fs_folder)} && python inference.py --driven_audio {str(paths.audio)} --source_video {str(paths.input_video)} --enhancer 'lip'  --time_step '0.5' --result_dir {str(paths.outputs_folder)} && conda deactivate sadtalker && cd .."
 
     subprocess.run(command, shell=True, check=True)
     year = datetime.now().year
