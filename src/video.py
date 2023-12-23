@@ -1,7 +1,6 @@
 import subprocess
 import cv2
 import os
-import subprocess
 import shutil
 from datetime import datetime
 from tqdm import tqdm
