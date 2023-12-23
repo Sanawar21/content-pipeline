@@ -8,20 +8,11 @@ from tqdm import tqdm
 from .utils import paths
 from moviepy.editor import VideoFileClip, AudioFileClip
 
-FPS = 25
+FPS = 24
 
 
 def __change_fps(input_video_path=str(paths.output_video), output_video_path=str(paths.output_video), new_fps=FPS):
     print("Changing FPS.")
-
-    # TODO: Fix
-    # Traceback (most recent call last):
-    # File "<stdin>", line 1, in <module>
-    # File "D:\projects\content-pipeline\src\video.py", line 40, in preprocess
-    #     __change_fps(str(paths.input_video),
-    # File "D:\projects\content-pipeline\src\video.py", line 24, in __change_fps
-    #     os.rename(input_video_path, new_input_video_path)
-    # PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'D:\\projects\\content-pipeline\\inputs\\video.mp4' -> 'D:\\projects\\content-pipeline\\inputs\\video_.mp4'
 
     video_capture = cv2.VideoCapture(input_video_path)
     current_fps = video_capture.get(cv2.CAP_PROP_FPS)
@@ -43,7 +34,6 @@ def __change_fps(input_video_path=str(paths.output_video), output_video_path=str
 
 
 def preprocess():
-    # unprocessed = VideoFileClip(str(paths.input_video))
     video_capture = cv2.VideoCapture(str(paths.input_video))
     current_fps = video_capture.get(cv2.CAP_PROP_FPS)
 
@@ -51,8 +41,6 @@ def preprocess():
         video_capture.release()
         del video_capture
 
-        # unprocessed.close()
-        # del unprocessed
         __change_fps(str(paths.input_video),
                      str(paths.input_video))
 
