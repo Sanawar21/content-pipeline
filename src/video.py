@@ -5,9 +5,25 @@ import shutil
 from datetime import datetime
 from tqdm import tqdm
 from .utils import paths
-from moviepy.editor import VideoFileClip, AudioFileClip
+from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips
 
 FPS = 24
+
+
+def __extend_video(video_clip, target_duration):
+    original_duration = video_clip.duration
+
+    repetitions = int(target_duration / original_duration)
+
+    video_clips_list = [video_clip] * repetitions
+
+    remaining_duration = target_duration - (repetitions * original_duration)
+
+    if remaining_duration > 0:
+        partial_clip = video_clip.subclip(0, remaining_duration)
+        video_clips_list.append(partial_clip)
+
+    return concatenate_videoclips(video_clips_list)
 
 
 def __change_fps(input_video_path=str(paths.output_video), output_video_path=str(paths.output_video), new_fps=FPS):
@@ -33,6 +49,7 @@ def __change_fps(input_video_path=str(paths.output_video), output_video_path=str
 
 
 def preprocess():
+    audio = AudioFileClip(str(paths.audio))
     video_capture = cv2.VideoCapture(str(paths.input_video))
     current_fps = video_capture.get(cv2.CAP_PROP_FPS)
 
@@ -47,8 +64,9 @@ def preprocess():
     trimmed = unprocessed.subclip(2, -2)
     target_resolution = (1080, 1920)
     resized_clip = trimmed.resize(target_resolution)
+    new_clip = __extend_video(resized_clip, audio.duration)
 
-    resized_clip.write_videofile(
+    new_clip.write_videofile(
         str(paths.preprocessed_video), codec="libx264", threads=os.cpu_count(), verbose=True)
 
 

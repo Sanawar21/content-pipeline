@@ -1,12 +1,7 @@
 from flask import Flask, request, jsonify, send_file
 from werkzeug.utils import secure_filename
 from src.utils import status, start_vps, close_vps, restore_dirs, paths
-from src import audio
-from src import video
-from src import captions
-from src import zoom
-from src import b_rolls
-from src import content
+from src import audio, video, captions, zoom, b_rolls, content
 import os
 
 
