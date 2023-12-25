@@ -124,7 +124,7 @@ def enhance_video():
 
 
 def images_to_video():
-    fps = FPS if FPS is not None else 25
+    fps = FPS
     image_files = sorted(
         [
             f
