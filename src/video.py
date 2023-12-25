@@ -7,7 +7,7 @@ from tqdm import tqdm
 from .utils import paths
 from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips
 
-FPS = 24
+FPS = 30
 
 
 def __extend_video(video_clip, target_duration):
