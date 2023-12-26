@@ -3,7 +3,7 @@
 
 from cog import BasePredictor, Input, Path
 from app import generate
-from src.utils import paths, restore_dirs
+from src.utils import paths, restore_dirs, make_archive
 import shutil
 
 
@@ -37,4 +37,5 @@ class Predictor(BasePredictor):
         }
 
         generate(voice_name, description, workflow)
-        return Path(str(paths.output_video))
+        make_archive(paths.outputs_folder, paths.zip_file)
+        return Path(str(paths.zip_file))

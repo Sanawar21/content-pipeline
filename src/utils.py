@@ -47,6 +47,7 @@ class Paths:
     unprocessed_frames_folder = outputs_folder / "frames"
     audio = outputs_folder / "audio.wav"
     restored_images_folder = outputs_folder / "restored_imgs"
+    zip_file = outputs_folder / "outputs.zip"
 
     vr_folder = base_path / "Wav2Lip"
 
@@ -133,6 +134,14 @@ def restore_dirs():
             os.mkdir(dir)
         except:
             pass
+
+
+def make_archive(source: pathlib.Path, destination: pathlib.Path) -> None:
+    base_name = destination.parent / destination.stem
+    fmt = destination.suffix.replace(".", "")
+    root_dir = source.parent
+    base_dir = source.name
+    shutil.make_archive(str(base_name), fmt, root_dir, base_dir)
 
 
 if __name__ == "__main__":

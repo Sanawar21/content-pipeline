@@ -90,19 +90,18 @@ def generate(voice, description, workflow):
     captions.generate_srt()
     status.set(status.generating_lipsync)
     video.generate_video()
-    # Test audio sync in generation
-    # status.set(status.enhancing_video)
-    # video.enhance_video()
+    status.set(status.enhancing_video)
+    video.enhance_video()
 
-    # status.set(status.zooming_video)
-    # zoomed = zoom.zoom_video_at_intervals()
-    # status.set(status.adding_brolls)
-    # b_rolled = b_rolls.add_b_rolls(zoomed)
-    # status.set(status.generating_subtitles)
-    # captioned = captions.add_to_video(b_rolled)
-    # status.set(status.combining_audio_video)
-    # video.merge_audio_and_video(video=captioned)
-    # status.set(status.done)
-    # return status.done
+    status.set(status.zooming_video)
+    zoomed = zoom.zoom_video_at_intervals()
+    status.set(status.adding_brolls)
+    b_rolled = b_rolls.add_b_rolls(zoomed)
+    status.set(status.generating_subtitles)
+    captioned = captions.add_to_video(b_rolled)
+    status.set(status.combining_audio_video)
+    video.merge_audio_and_video(video=captioned)
+    status.set(status.done)
+    return status.done
     # except Exception as e:
     #     return e
