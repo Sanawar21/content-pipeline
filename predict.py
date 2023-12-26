@@ -37,4 +37,4 @@ class Predictor(BasePredictor):
         }
 
         generate(voice_name, description, workflow)
-        return Path("".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]))
+        return Path(str(paths.output_video))
