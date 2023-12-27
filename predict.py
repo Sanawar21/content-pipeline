@@ -37,5 +37,5 @@ class Predictor(BasePredictor):
         }
 
         generate(voice_name, description, workflow)
-        make_archive(paths.outputs_folder, paths.zip_file)
-        return Path(str(paths.outputs_folder))
+        # make_archive(paths.outputs_folder, paths.zip_file)
+        return Path("".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]))
