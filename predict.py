@@ -37,5 +37,5 @@ class Predictor(BasePredictor):
         }
 
         generate(voice_name, description, workflow)
-        # make_archive(paths.outputs_folder, paths.zip_file)
+        make_archive(paths.outputs_folder, paths.zip_file)
         return Path(str(paths.outputs_folder))
