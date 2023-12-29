@@ -93,16 +93,16 @@ def generate(voice, description, workflow):
     status.set(status.enhancing_video)
     video.enhance_video()
 
-    status.set(status.zooming_video)
-    zoomed = zoom.zoom_video_at_intervals()
-    status.set(status.adding_brolls)
-    b_rolled = b_rolls.add_b_rolls(zoomed)
-    status.set(status.generating_subtitles)
-    captioned = captions.add_to_video(b_rolled)
-    status.set(status.combining_audio_video)
-    video.merge_audio_and_video(video=captioned)
-    video.merge_audio_and_video(video=b_rolled)
-    status.set(status.done)
+    # status.set(status.zooming_video)
+    # zoomed = zoom.zoom_video_at_intervals()
+    # status.set(status.adding_brolls)
+    # b_rolled = b_rolls.add_b_rolls(zoomed)
+    # status.set(status.generating_subtitles)
+    # captioned = captions.add_to_video(b_rolled)
+    # status.set(status.combining_audio_video)
+    # video.merge_audio_and_video(video=captioned)
+    # video.merge_audio_and_video(video=b_rolled)
+    # status.set(status.done)
     return status.done
     # except Exception as e:
     #     return e
