@@ -42,7 +42,8 @@ class Predictor(BasePredictor):
         os.mkdir(zip_folder)
         shutil.copy(paths.output_video, zip_folder / "video.mp4")
         shutil.copy(paths.enhanced_video, zip_folder / "enhanced.mp4")
-        shutil.copy(paths.restored_images_folder, zip_folder / "restored_imgs")
+        shutil.copytree(paths.restored_images_folder,
+                        zip_folder / "restored_imgs")
         shutil.copy(paths.content_path, zip_folder / "content.json")
         shutil.copy(paths.audio, zip_folder / "audio.wav")
         shutil.copy(paths.sentences_file, zip_folder / "sentences.srt")
