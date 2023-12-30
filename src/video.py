@@ -7,7 +7,7 @@ from tqdm import tqdm
 from .utils import paths
 from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips
 
-FPS = 30
+FPS = 25  # Cannot be changed because SadTalker develops with 25 fps.
 
 
 def __extend_video(video_clip, target_duration):

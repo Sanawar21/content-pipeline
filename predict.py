@@ -38,16 +38,4 @@ class Predictor(BasePredictor):
         }
 
         generate(voice_name, description, workflow)
-        zip_folder = paths.base_path / "to_zip"
-        os.mkdir(zip_folder)
-        shutil.copy(paths.output_video, zip_folder / "video.mp4")
-        shutil.copy(paths.enhanced_video, zip_folder / "enhanced.mp4")
-        shutil.copytree(paths.restored_images_folder,
-                        zip_folder / "restored_imgs")
-        shutil.copy(paths.content_path, zip_folder / "content.json")
-        shutil.copy(paths.audio, zip_folder / "audio.wav")
-        shutil.copy(paths.sentences_file, zip_folder / "sentences.srt")
-        shutil.copy(paths.subtitles_file, zip_folder / "subtitles.srt")
-        make_archive(zip_folder, paths.zip_file)
-        # return Path("".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]))
-        return Path(str(paths.zip_file))
+        return Path("".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]))
