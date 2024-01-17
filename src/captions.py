@@ -191,7 +191,8 @@ def __add_subtitles_to_video(video, subtitles_clip):
     video_clip = video
     video_w, video_h = video_clip.size
 
-    final_clip = CompositeVideoClip([video_clip, subtitles_clip])
+    final_clip = CompositeVideoClip(
+        [video_clip, subtitles_clip], use_bgclip=True)
     return final_clip.set_duration(video_clip.duration)
 
 

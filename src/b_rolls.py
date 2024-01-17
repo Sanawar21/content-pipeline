@@ -99,7 +99,7 @@ def __create_composite_video(base_video, b_roll_list: "list[BRoll]"):
         b_roll_clip = b_roll_info.b_roll
         composite_clips.append(b_roll_clip.set_position('center'))
 
-    final_composite = CompositeVideoClip(composite_clips)
+    final_composite = CompositeVideoClip(composite_clips, use_bgclip=True)
     return final_composite
 
 
