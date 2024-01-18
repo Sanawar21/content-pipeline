@@ -46,4 +46,16 @@ class Predictor(BasePredictor):
         }
 
         generate(voice_name, description, workflow)
-        return Path("".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]))
+        # return Path("".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]))
+
+        # DEBUG OUT OF SYNC AND FRAME FREEZING
+        zip_folder = paths.base_path / "to_zip"
+        os.mkdir(zip_folder)
+        shutil.copy(paths.audio, zip_folder / "audio.wav")
+        shutil.copy(paths.enhanced_video, zip_folder / "enhanced.mp4")
+        shutil.copy(paths.output_video, zip_folder / "video.mp4")
+        shutil.copy("".join([str(paths.captioned_video).split(".")[
+                    0], "_with_audio.mp4"]), zip_folder / "final.mp4")
+        make_archive(zip_folder, paths.zip_file)
+
+        return Path(paths.zip_file)
