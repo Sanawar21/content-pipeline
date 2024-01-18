@@ -1,4 +1,4 @@
-from moviepy.editor import TextClip, CompositeVideoClip
+from moviepy.editor import TextClip, CompositeVideoClip, VideoFileClip
 from moviepy.video.tools.subtitles import SubtitlesClip
 from whisper_timestamped import whisper_timestamped as whisper
 from .utils import paths
@@ -196,7 +196,7 @@ def __add_subtitles_to_video(video, subtitles_clip):
     return final_clip.set_duration(video_clip.duration)
 
 
-def add_to_video(video):
+def add_to_video(video) -> VideoFileClip:
     os.chdir(paths.whisper_folder)
     generate_srt()
     subtitles_clip = __create_subtitles_clip(video)

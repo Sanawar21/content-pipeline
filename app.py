@@ -4,7 +4,7 @@ from src.utils import status, start_vps, close_vps, restore_dirs, paths
 from src import audio, video, captions, zoom, b_rolls, content
 from moviepy.editor import VideoFileClip
 import os
-
+import shutil
 
 app = Flask(__name__)
 
@@ -99,10 +99,13 @@ def generate(voice, description, workflow):
     b_rolled = b_rolls.add_b_rolls(zoomed)
     status.set(status.generating_subtitles)
     captioned = captions.add_to_video(b_rolled)
+    captioned.write_videofile(
+        str(paths.captioned_video), fps=25, threads=os.cpu_count(),  codec="libx264")
     status.set(status.combining_audio_video)
     # video.merge_audio_and_video(video=VideoFileClip(str(paths.enhanced_video)))
     video.merge_audio_and_video(captioned)
     # status.set(status.done)
+
     return status.done
     # except Exception as e:
     #     return e

@@ -56,6 +56,7 @@ class Predictor(BasePredictor):
         shutil.copy(paths.output_video, zip_folder / "video.mp4")
         shutil.copy("".join([str(paths.captioned_video).split(".")[
                     0], "_with_audio.mp4"]), zip_folder / "final.mp4")
+        shutil.copy(paths.captioned_video, zip_folder / "captioned.mp4")
         make_archive(zip_folder, paths.zip_file)
 
         return Path(paths.zip_file)
