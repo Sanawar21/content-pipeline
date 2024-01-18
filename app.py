@@ -102,7 +102,6 @@ def generate(voice, description, workflow):
     captioned.write_videofile(
         str(paths.captioned_video), fps=25, threads=os.cpu_count(),  codec="libx264")
     status.set(status.combining_audio_video)
-    # video.merge_audio_and_video(video=VideoFileClip(str(paths.enhanced_video)))
     video.merge_audio_and_video(captioned)
     # status.set(status.done)
 

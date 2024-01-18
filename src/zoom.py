@@ -86,4 +86,5 @@ if __name__ == "__main__":
     percentage = 0.8
     video_path = 'enhanced.mp4'
     output_path = 'zoomed.mp4'
-    zoom_video_at_intervals()
+    file = zoom_video_at_intervals()
+    file.write_videofile(output_path)
