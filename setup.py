@@ -13,7 +13,8 @@ os.chdir(paths.base_path / "SadTalker-Video-Lip-Sync")
 
 # Define the commands
 commands = [
-    "gdown https://drive.google.com/uc\\?id\\=1TB0QWxiGtagEbdwDIpIVeQftKtDBj8Q5",
+    # "gdown https://drive.google.com/uc\\?id\\=1TB0QWxiGtagEbdwDIpIVeQftKtDBj8Q5",
+    "gdown https://drive.usercontent.google.com/download?id=1TB0QWxiGtagEbdwDIpIVeQftKtDBj8Q5&authuser=0&confirm=t&uuid=252c6272-4ede-44a0-87dd-9cd3eb76e918&at=APZUnTWYkC8vIxefSbWx_z36QET4%3A1705685129782",
     "rm -rf checkpoints",
     "unzip checkpoints.zip",
     "rm checkpoints.zip",
