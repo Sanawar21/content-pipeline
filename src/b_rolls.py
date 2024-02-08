@@ -40,7 +40,7 @@ class BRoll:
         if self.path.endswith((".jpg", ".png", "jpeg")):
             b_roll_clip = ImageClip(
                 self.path, duration=self.duration).set_start(self.start_time)
-            b_roll_clip.fps = FPS
+            b_roll_clip.set_fps(FPS)
         else:
             b_roll_clip = VideoFileClip(self.path).set_duration(
                 self.duration).set_start(self.start_time)
@@ -98,8 +98,7 @@ def __create_composite_video(base_video, b_roll_list: "list[BRoll]"):
     for b_roll_info in b_roll_list:
         b_roll_clip = b_roll_info.b_roll
         composite_clips.append(b_roll_clip.set_position('center'))
-
-    final_composite = CompositeVideoClip(composite_clips)
+    final_composite = CompositeVideoClip(composite_clips, use_bgclip=True)
     return final_composite
 
 

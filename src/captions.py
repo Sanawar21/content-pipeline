@@ -181,6 +181,7 @@ def __create_subtitles_clip(
     )
 
     sub = SubtitlesClip(srt_file, generator)
+    sub = sub.set_fps(25)
     sub.size = vid_size
     os.remove(paths.temp_srt)
     return sub.set_position(("center", 0.70), relative=True)
@@ -192,7 +193,7 @@ def __add_subtitles_to_video(video, subtitles_clip):
     video_w, video_h = video_clip.size
 
     final_clip = CompositeVideoClip(
-        [video_clip, subtitles_clip])
+        [video_clip, subtitles_clip], use_bgclip=True)
     return final_clip.set_duration(video_clip.duration)
 
 
