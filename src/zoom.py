@@ -1,5 +1,5 @@
 from moviepy.video.fx.all import crop
-from moviepy.editor import VideoFileClip, concatenate_videoclips
+from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips
 from .utils import paths
 
 
@@ -79,7 +79,7 @@ def zoom_video_at_intervals(percentage=0.8):
         else:
             clips.append(interval_clips[i])
 
-    return concatenate_videoclips(clips, method="compose")
+    return concatenate_videoclips(clips, method="compose").set_audio(AudioFileClip(str(paths.audio)))
 
 
 if __name__ == "__main__":

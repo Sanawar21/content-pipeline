@@ -194,12 +194,11 @@ def __add_subtitles_to_video(video, subtitles_clip):
 
     final_clip = CompositeVideoClip(
         [video_clip, subtitles_clip], use_bgclip=True)
-    return final_clip.set_duration(video_clip.duration)
+    return final_clip.set_duration(video_clip.duration).set_audio(video.audio)
 
 
 def add_to_video(video) -> VideoFileClip:
     os.chdir(paths.whisper_folder)
-    generate_srt()
     subtitles_clip = __create_subtitles_clip(video)
     final_clip = __add_subtitles_to_video(video, subtitles_clip)
     os.chdir(paths.base_path)

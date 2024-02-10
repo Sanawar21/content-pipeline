@@ -1,4 +1,4 @@
-from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip, concatenate_videoclips
+from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip, AudioFileClip, concatenate_videoclips
 from fuzzywuzzy import process
 from .utils import paths, read_content
 from .video import FPS
@@ -76,7 +76,7 @@ def __blackout_sections(video, b_rolls: "list[BRoll]"):
 
         blackout_duration = end_time - start_time
         black_frame_clip = ImageClip(
-            __create_black_image(video_clip.size), duration=blackout_duration)
+            __create_black_image(video_clip.size), duration=blackout_duration).set_fps(FPS)
         black_frame_clip.size = video_clip.size
         modified_sections.append(black_frame_clip)
 
@@ -86,7 +86,8 @@ def __blackout_sections(video, b_rolls: "list[BRoll]"):
         modified_sections.append(video_clip.subclip(
             last_end_time, video_clip.duration))
 
-    final_video = concatenate_videoclips(modified_sections, method="compose")
+    final_video = concatenate_videoclips(
+        modified_sections, method="compose").set_audio(AudioFileClip(str(paths.audio)))
 
     return final_video
 
@@ -99,7 +100,7 @@ def __create_composite_video(base_video, b_roll_list: "list[BRoll]"):
         b_roll_clip = b_roll_info.b_roll
         composite_clips.append(b_roll_clip.set_position('center'))
     final_composite = CompositeVideoClip(composite_clips, use_bgclip=True)
-    return final_composite
+    return final_composite.set_audio(main_clip.audio)
 
 
 def __map_keywords_to_transcript(broll_data, transcript_data):
