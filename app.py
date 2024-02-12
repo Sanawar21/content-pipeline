@@ -96,11 +96,18 @@ def generate(voice, description, workflow):
     status.set(status.zooming_video)
     zoomed = zoom.zoom_video_at_intervals()
     status.set(status.adding_brolls)
-    b_rolled = b_rolls.add_b_rolls(zoomed)
+
+#
+    captioned = captions.add_to_video(zoomed)
+    status.set(status.combining_audio_video)
+    video.merge_audio_and_video(captioned)
+#
+
+    # b_rolled = b_rolls.add_b_rolls(zoomed)
     # status.set(status.generating_subtitles)
     # captioned = captions.add_to_video(b_rolled)
     # status.set(status.combining_audio_video)
-    video.merge_audio_and_video(b_rolled)
+    # video.merge_audio_and_video(captioned)
     # status.set(status.done)
 
     return status.done
