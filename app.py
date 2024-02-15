@@ -97,10 +97,11 @@ def generate(voice, description, workflow):
     zoomed = zoom.zoom_video_at_intervals()
     status.set(status.adding_brolls)
 
-#
-    captioned = captions.add_to_video(zoomed)
+# (captions) is working without going out of sync
+    # captioned = captions.add_to_video(zoomed)
+    b_rolled = b_rolls.add_b_rolls(zoomed)
     status.set(status.combining_audio_video)
-    video.merge_audio_and_video(captioned)
+    video.merge_audio_and_video(b_rolled)
 #
 
     # b_rolled = b_rolls.add_b_rolls(zoomed)
