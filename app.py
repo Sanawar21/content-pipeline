@@ -98,18 +98,19 @@ def generate(voice, description, workflow):
     status.set(status.adding_brolls)
 
 # (captions) is working without going out of sync
+# brolls froze in 12 seconds, after the second broll image
     # captioned = captions.add_to_video(zoomed)
-    b_rolled = b_rolls.add_b_rolls(zoomed)
-    status.set(status.combining_audio_video)
-    video.merge_audio_and_video(b_rolled)
+    # b_rolled = b_rolls.add_b_rolls(zoomed)
+    # status.set(status.combining_audio_video)
+    # video.merge_audio_and_video(b_rolled)
 #
 
-    # b_rolled = b_rolls.add_b_rolls(zoomed)
-    # status.set(status.generating_subtitles)
-    # captioned = captions.add_to_video(b_rolled)
-    # status.set(status.combining_audio_video)
-    # video.merge_audio_and_video(captioned)
-    # status.set(status.done)
+    b_rolled = b_rolls.add_b_rolls(zoomed)
+    status.set(status.generating_subtitles)
+    captioned = captions.add_to_video(b_rolled)
+    status.set(status.combining_audio_video)
+    video.merge_audio_and_video(captioned)
+    status.set(status.done)
 
     return status.done
     # except Exception as e:
