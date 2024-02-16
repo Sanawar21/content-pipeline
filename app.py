@@ -94,7 +94,7 @@ def generate(voice, description, workflow):
     status.set(status.enhancing_video)
     video.enhance_video()
     status.set(status.zooming_video)
-    zoomed = zoom.zoom_video_at_intervals()
+    # zoomed = zoom.zoom_video_at_intervals()
     status.set(status.adding_brolls)
 
 # (captions) is working without going out of sync
@@ -105,7 +105,8 @@ def generate(voice, description, workflow):
     # video.merge_audio_and_video(b_rolled)
 #
 
-    b_rolled = b_rolls.add_b_rolls(zoomed)
+    # b_rolled = b_rolls.add_b_rolls(zoomed)
+    b_rolled = b_rolls.add_b_rolls(VideoFileClip(paths.enhanced_video))
     status.set(status.generating_subtitles)
     captioned = captions.add_to_video(b_rolled)
     status.set(status.combining_audio_video)
