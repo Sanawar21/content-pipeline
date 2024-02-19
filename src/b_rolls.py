@@ -190,7 +190,7 @@ def __generate_b_rolls() -> 'list[BRoll]':
         pass
 
     content = read_content()
-    b_roll_data = content["b-roll"]
+    b_roll_data = content["b-rolls"]
     keywords = []
     keywords_data = {}
 

@@ -116,3 +116,13 @@ def generate(voice, description, workflow):
     return status.done
     # except Exception as e:
     #     return e
+
+
+if __name__ == "__main__":
+    workflow = {
+        'VideoTopic': 'Books',
+        'TypeOfContent': 'Informative',
+        'KeyPoints': 'Inspirational'
+    }
+
+    content.process_workflow(workflow)
