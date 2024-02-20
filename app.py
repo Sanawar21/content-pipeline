@@ -106,7 +106,7 @@ def generate(voice, description, workflow):
 #
 
     # b_rolled = b_rolls.add_b_rolls(zoomed)
-    b_rolled = b_rolls.add_b_rolls(VideoFileClip(paths.enhanced_video))
+    b_rolled = b_rolls.add_b_rolls(VideoFileClip(str(paths.enhanced_video)))
     status.set(status.generating_subtitles)
     captioned = captions.add_to_video(b_rolled)
     status.set(status.combining_audio_video)
