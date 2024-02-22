@@ -78,5 +78,11 @@ def list_voices():
         raise Exception(str(response.json()))
 
 
+def dispose_voice(name):
+    url = f"https://api.elevenlabs.io/v1/voices/{list_voices()[name]}"
+    response = requests.delete(url)
+    print(response.text)
+
+
 if __name__ == "__main__":
     split_into_audios()
