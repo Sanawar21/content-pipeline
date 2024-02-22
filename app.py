@@ -89,6 +89,7 @@ def generate(voice, description, workflow):
 
     audio.generate(voice)
     captions.generate_srt()
+    audio.dispose_voice(voice)
     status.set(status.generating_lipsync)
     video.generate_video()
     status.set(status.enhancing_video)

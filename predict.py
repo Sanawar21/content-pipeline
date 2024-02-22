@@ -20,10 +20,10 @@ class Predictor(BasePredictor):
         input_video: Path = Input(
             default=None, description="Input video (required if session ID not provided)"),
         input_audio: Path = Input(
-            description="Input audio (wav only) for voice cloning (optional; can also be provided via the session ID)", default=None),
-        voice_name: str = Input(description="Voice name (required)"),
-        description: str = Input(
-            description="Voice description (optional)", default=None),
+            description="Input audio (wav only) for voice cloning (optional; can also be provided via the session ID)"),
+        # voice_name: str = Input(description="Voice name (required)"),
+        # description: str = Input(
+        #     description="Voice description (optional)", default=None),
         video_topic: str = Input(description="Video topic (required)"),
         content_type: str = Input(description="Type of content (required)"),
         key_points: str = Input(description="Key points (required)"),
@@ -45,7 +45,7 @@ class Predictor(BasePredictor):
             'KeyPoints': key_points,
         }
 
-        generate(voice_name, description, workflow)
+        generate(session_id, None, workflow)
         return Path("".join([str(paths.captioned_video).split(".")[0], "_with_audio.mp4"]))
 
         # DEBUG OUT OF SYNC AND FRAME FREEZING
